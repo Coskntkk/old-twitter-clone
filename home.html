@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Old Twitter</title>
+  <link rel="shortcut icon" href="images/favicon.ico">
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles/bootstrap-5.0.2/css/bootstrap.css">
+  <link rel="stylesheet" href="styles/home.css">
+
+  <script src="https://kit.fontawesome.com/d1ba608ce2.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-light">
+    <img class="banner" src="images/twitter.png" alt="twitter_logo">
+    <form class="d-flex">
+      <div class="header-links">
+        <a href="#">Home</a>
+        <p> | </p>
+        <a href="#">Your profile</a>
+        <p> | </p>
+        <a href="#">Invite</a>
+        <p> | </p>
+        <a href="#">Public timeline</a>
+        <p> | </p>
+        <a href="#">Badges</a>
+        <p> | </p>
+        <a href="#">Settings</a>
+        <p> | </p>
+        <a href="#">Help</a>
+        <p> | </p>
+        <a href="#">Sign out</a>
+      </div>
+    </form>
+  </nav>
+
+
+  <section>
+    <div class="row">
+      <div class="col-lg-9 col-sm-12">
+        <div class="tweeting">
+          <div class="inputarea">
+            <div class="d-flex justify-content-between">
+              <h5>What are you doing?</h5>
+              <p>Characters available: <strong class="chars-left">140</strong></p>
+            </div>
+            <div class="form-floating">
+              <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+              <label for="floatingTextarea2"></label>
+            </div>
+          </div>
+          <div class="update">
+            <button class="update-button" type="button" name="button">Update</button>
+          </div>
+        </div>
+
+        <div class="tweets">
+          <div class="row d-flex justify-content-end">
+            <div class="col-2 tabs tab1">
+              <a href="#">Archive</a>
+            </div>
+            <div class="col-2 tabs tab2">
+              <a href="#">Replies</a>
+            </div>
+            <div class="col-2 tabs tab3">
+              <a href="#">Recent</a>
+            </div>
+          </div>
+          <div class="row thread">
+            <div class="col-12">
+              <h5>What are we doing?</h5>
+            </div>
+            <!-- -->
+            <div class="comptlete-tweet">
+              <div class="tweet-div">
+                <img class="tweetUserPic" src="images/cos.png" alt="">
+                <p><a class="tweetUser" href="#">Coş</a> <span class="tweet-text">Bu bir tivittir.</span>
+                  <span class="tweetTime">5 minutes ago</span>
+                  <span class="tweetPlatform"> from web </span>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-trash-alt"></i>
+                </p>
+              </div>
+              <hr class="tweetHr">
+            </div>
+            <!-- -->
+            <div class="comptlete-tweet">
+              <div class="tweet-div">
+                <img class="tweetUserPic" src="images/cos.png" alt="">
+                <p><a class="tweetUser" href="#">Coş</a> <span class="tweet-text">Bu da bir tivittir.</span>
+                  <span class="tweetTime">5 minutes ago</span>
+                  <span class="tweetPlatform"> from web </span>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-trash-alt"></i>
+                </p>
+              </div>
+              <hr class="tweetHr">
+            </div>
+
+            <div class="comptlete-tweet">
+              <div class="tweet-div">
+                <img class="tweetUserPic" src="images/cos.png" alt="">
+                <p><a class="tweetUser" href="#">Coş</a> <span class="tweet-text">Bu bile bir tivittir.</span>
+                  <span class="tweetTime">5 minutes ago</span>
+                  <span class="tweetPlatform"> from web </span>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-trash-alt"></i>
+                </p>
+              </div>
+              <hr class="tweetHr">
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-sm-12">
+        <div class="sidebar">
+          <p>Welcome,<a href="#">Coş</a></p>
+          <p><strong>Currently:</strong></p>
+
+          <p><a href="#">Following</a>: 566
+            <br><a href="#">Followers</a>: 565
+            <br><a href="#">Favorites</a>: 0
+            <br><a href="#">Direct Messages</a>: 13
+            <br>Updates: 3
+          </p>
+
+          <p>Sent Notifications To:<br>
+            <input type="radio" name="" value="im"> <label>im</label>
+            <input type="radio" name="" value="im"> <label>web-only</label>
+          </p>
+
+          <div class="user-images">
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+</body>
+
+</html>
