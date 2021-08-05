@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Old Twitter</title>
+    <link rel="shortcut icon" href="images/favicon.ico">
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/bootstrap-5.0.2/css/bootstrap.css">
+    <link rel="stylesheet" href="styles/login.css">
+
+    <script src="https://kit.fontawesome.com/d1ba608ce2.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav class="navbar navbar-light">
+        <img class="banner" src="images/twitter.png" alt="twitter_logo">
+        <form class="d-flex">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle select-lang" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    Select Language...
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="#">English</a></li>
+                </ul>
+            </div>
+        </form>
+    </nav>
+
+    <div class="container-fluid main-div">
+        <div class="row">
+            <div class="col-lg-8">
+
+                <div class="login-top d-flex justify-content-between">
+
+                    <h3 class="what-is-twitter">What is Twitter?</h3>
+                    <form class="d-flex flex-row-reverse what-why-how">
+                        <button type="button" class="btn btn-outline-secondary">How?</button>
+                        <button type="button" class="btn btn-outline-secondary">Why?</button>
+                        <button type="button" class="btn btn-outline-dark">What?</button>
+                    </form>
+
+                </div>
+                <div class="login-mid">
+
+                    <img src="images/loginLogo.png" class="login-image">
+                    <h5>Twitter is a service for friends, family, anc co-workers to communicate and stay connected through the exchange of quick, frequent answers to one simple questions: <strong>What are you doing?</strong></h5>
+
+                </div>
+                <div class="login-bot">
+                    <button type="button" class="btn btn-success get-start">Get Started--Join!</button>
+                </div>
+
+            </div>
+            <div class="col-lg-4">
+
+                <button type="button" class="btn btn-danger watch-a-video" onclick="window.open('https://www.youtube.com/watch?v=1ouUrDZtMGM');"><i class="fas fa-play"></i> Watch a video!</button><br>
+
+                <h3>Please sign in</h3>
+
+                <label>user name or email adress:</label><br>
+                <input type="text" id="userName" name="loginName"><br>
+
+                <label>password:</label><br>
+                <input type="text" id="userPassword" name="loginPassword"><br>
+
+                <input type="checkbox" id="rememberMe" name="rememberLogin"> <span>Remember Me</span> <button type="button" class="btn btn-light sign-in-btn">Sign In >></button> <br>
+
+                <p>Forgor password? <a href="#"><u>Click here.</u></a> </p>
+
+                <div class="green-box">
+                    <p>Already using Twitter by SMS or IM? <a href="#">Click here</a>.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="comments row">
+            <div class="col-4">
+                <div class="user-comment">
+                    <p>Twitter is on its way to becoming the next killer app.</p>
+                </div>
+                <p>TIME Magazine</p>
+            </div>
+            <div class="col-4">
+                <div class="user-comment">
+                    It's almost like ESP
+                </div>
+                <p>Wired</p>
+            </div>
+            <div class="col-4">
+                <div class="user-comment">
+                    <p>Twitter is the telegraph system of Web 2.0.</p>
+                </div>
+                <p><strong>Nicholas Carr</strong>, Author and Technologists</p>
+            </div>
+        </div>
+
+        <div class="bottom-bar">
+            <p>Ⓒ 2008 Twitter <a href="#">About Us</a> <a href="#">Contact</a>  <a href="#">Blog</a>  <a href="#">Status</a>  <a href="#">Downloads</a>  <a href="#">API</a>  <a href="#">Help</a>  <a href="#">Jobs</a>  <a href="#">TOS</a>  <a href="#">Privacy</a></p>
+        </div>
+    </div>
+
+    <script src="styles/bootstrap-5.0.2/js/bootstrap.js"></script>
+</body>
+</html>

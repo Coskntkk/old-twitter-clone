@@ -1,0 +1,105 @@
+body {
+  background-color: lightblue;
+  margin: auto 20%;
+}
+
+hr {
+  border: 0;
+  clear:both;
+  display:block;
+  width: 96%;
+  background-color:#000000;
+  height: 2px;
+}
+
+/* NAVBAR */
+.navbar {
+  margin-bottom: 20px;
+  padding: auto 0;
+}
+
+.header-links {
+  display: inline;
+  background-color: white;
+  font-size: 0.9rem;
+}
+.header-links p {
+  margin: 0 3px;
+  display: inline;
+  text-align: right;
+}
+
+/* TWEETS AREA */
+.inputarea {
+  background-color: lightgray;
+  display: inline-block;
+  padding: 3px;
+  border: solid 1px;
+  border-color: gray;
+  width: 100%;
+}
+.input-text {
+  display: inline;
+  margin: 0;
+}
+
+.update {
+  text-align: center;
+}
+.update-button {
+  font-weight: bold;
+  border-radius: 10%;
+  margin: 20px auto 40px;
+}
+
+.tabs {
+  background-color: white;
+  border: solid 1px;
+  border-color: lightgray;
+  text-align: center;
+  margin-right: 3px;
+}
+.tab1, .tab2 {
+  background-color: lightgray;
+}
+.tab3 {
+  margin-right: 1.5%;
+}
+
+.thread {
+  background-color: white;
+  margin: inherit;
+}
+
+/* TWEET */
+.tweet-div {
+  display: flex;
+}
+
+.tweet-div p{
+  display: block;
+}
+
+.tweet-div img {
+  width: 75px;
+  margin: 0 20px 10px 0;
+}
+
+.tweetUser {
+  font-weight: bold;
+}
+
+.tweetTime {
+  text-decoration: underline;
+}
+
+.tweetHr {
+  margin: 0 1% 1%;
+}
+
+/* SIDEBAR */
+.sidebar {
+  background-color: #e0ff92;
+  border: 1px solid #87bc44;
+  padding: 10px;
+}
