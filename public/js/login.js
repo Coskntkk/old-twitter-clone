@@ -29,3 +29,7 @@ $(".wwh-button").click(function(){
   $(".header-wwh").text(header);
   $(".twitter-paragraph").html(paragraph);
 })
+
+$(".get-start").click(function(){
+  window.location.href = "/account";
+})

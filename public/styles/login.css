@@ -1,3 +1,4 @@
+/* ########## ELEMENT SELECTORS ########## */
 body {
   background-color: rgb(154, 228, 232);
   margin: auto 25%;
@@ -6,12 +7,17 @@ body {
 a {
   text-decoration: none;
 }
-/* MAIN COMPONENTS */
+
+/* ########## CLASS SELECTORS ########## */
+/* ##### Main Components ##### */
 .navbar {
   margin-bottom: 20px;
   padding: auto 0;
 }
 
+.main {
+  background-color: white;
+}
 .arrow-up {
   margin-top: 3%;
   margin-left: 3%;
@@ -22,46 +28,37 @@ a {
   border-bottom: 15px solid white;
 }
 
-.main {
+/* ### Navbar Components ### */
+.select-lang {
   background-color: white;
+  color: black;
 }
 
-.login {
-  padding: 0 2.5%;
-  font-size: 0.85rem;
-  line-height: 1.5rem;
+/* ### Main Components ### */
+.row {
+  padding: 20px 10px;
 }
 
-/* ############################################ */
-.what-is-twitter, .what-why-how {
-  display: inline-block;
-}
-/* WHAT WHT HOW BUTTONS */
+/* # Main Top # */
 .wwh-button {
-  margin: auto auto 25% 10%;
   border-radius: 0;
-  padding: 2% 10%;
+  padding: 1% 5%;
+  margin-bottom: 3%;
 }
+
 .wwh-enabled {
   color: black;
   border-color: black;
   background-color: white
 }
+
 .wwh-disabled {
   color: darkgray;
   border-color: darkgray;
   border-style: dashed;
 }
 
-.row {
-  padding: 20px 10px;
-}
-
-.select-lang {
-  background-color: white;
-  color: black;
-}
-
+/* # Main Mid # */
 .login-image {
   width: 100%;
   height: 200px;
@@ -73,6 +70,7 @@ a {
   font-size: 1.25rem;
 }
 
+/* # Main Bottom # */
 .login-bot {
   text-align: center;
   margin-bottom: 1%
@@ -83,8 +81,37 @@ a {
   font-size: 1.5rem;
   border: solid 2px black;
   border-radius: 0;
-  margin: 5%;
+  margin: 4%;
   padding: .5% 3%;
+}
+
+/* # Comments Section # */
+.comments {
+  background-color: rgb(175, 239, 241);
+  padding: 1% 7%;
+}
+
+.user-comment {
+  background-color: white;
+  position:relative;
+  padding: 2% 5% 1%;
+  margin: 1rem 0 1em;
+}
+.user-comment:after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 20px;
+  border-top: 10px solid white;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+}
+
+/* # Login Side Bar # */
+.login {
+  padding: 0 2.5%;
+  font-size: 0.85rem;
+  line-height: 1.5rem;
 }
 
 .watch-a-video {
@@ -96,6 +123,21 @@ a {
   font-size: 1.25rem;
   font-weight: bold;
   padding: 1%;
+}
+
+.form-control {
+  border: solid 1px darkgray;
+  border-radius: 0;
+  border-color: darkgray;
+  margin-top: 0;
+}
+
+.form-label {
+  margin-bottom: 2px;
+}
+
+.what-is-twitter, .what-why-how {
+  display: inline-block;
 }
 
 .sign-in-btn {
@@ -118,27 +160,7 @@ a {
   margin-bottom: 0;
 }
 
-.comments {
-  background-color: rgb(175, 239, 241);
-  padding: 1% 7%;
-}
-
-.user-comment {
-  background-color: white;
-  position:relative;
-  padding: 2% 5% 1%;
-  margin: 1rem 0 1em;
-}
-.user-comment:after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 20px;
-  border-top: 10px solid white;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-}
-
+/* # Footer # */
 .bottom-bar {
   text-align: center;
   padding-top: 1%;
@@ -149,16 +171,6 @@ a {
   font-style: normal;
 }
 
-.form-control {
-  border: solid 1px darkgray;
-  border-radius: 0;
-  border-color: darkgray;
-  margin-top: 0;
-}
-.form-label {
-  margin-bottom: 2px;
-}
-
-.bottom-link {
+.footer-link {
   margin: 0 3px;
 }
