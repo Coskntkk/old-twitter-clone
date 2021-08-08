@@ -17,71 +17,121 @@
 <body>
   <nav class="navbar navbar-light">
     <img class="banner" src="images/twitter.png" alt="twitter_logo">
-    <form class="d-flex">
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle select-lang" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-          Select Language...
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" href="#">English</a></li>
-        </ul>
-      </div>
-    </form>
   </nav>
 
   <div class="arrow-up"></div>
 
-  <div class="container-fluid main">
-    <div class="row">
-      <div class="col-lg-8"><!-- -->
-
-        <div class="login-top">
-          <h3 class="what-is-twitter"><strong>Create a Free Twitter Account</strong></h3>
+  <div class="row container-fluid">
+    <div class="row main">
+      <div class="col-lg-9 col-md-12 register">
+        <div>
+          <h3 class="title"><strong>Create a Free Twitter Account</strong></h3>
         </div>
 
-        </div>
+        <div class="register-form">
+          <form class="" action="/account" method="post">
 
-        <div class="login-mid">
+            <div class="mb-3 row">
+              <label for="signupUserName" class="col-sm-2 col-form-label">Username:</label>
+              <div class="col-sm-10 row">
+                <div class="col-sm-6">
+                  <input type="text" class="form-control" id="signupUserName">
+                </div>
+                <div class="col-sm-6">
+                  <p>Your URL: http://twitter.com/<span class="yourUrl"></span></p>
+                </div>
+                <span class="usernameWarning" style="visibility:hidden">That Name hes been taken. Please choose another.</span>
+              </div>
+            </div>
 
-          <img src="images/loginLogo.png" class="login-image">
-          <p class="twitter-paragraph">Twitter is a service for friends, family, anc co-workers to communicate and stay connected through the exchange of quick, frequent answers to one simple questions: <strong>What are you doing?</strong></p>
+            <div class="mb-3 row">
+              <label for="signupPassword" class="col-sm-2 col-form-label">Password: </label>
+              <div class="col-sm-10 row">
+                <div class="col-sm-6">
+                  <input type="password" class="form-control" id="signupPassword">
+                </div>
+                <div class="col-sm-6">
+                  <p>6 characters or more (be tricky!)</p>
+                </div>
+              </div>
+            </div>
 
-        </div>
-        <div class="login-bot">
-          <form class="" action="/" method="post">
-            <button type="button" class="btn btn-success get-start">Get Started--Join!</button>
+            <div class="mb-3 row">
+              <label for="signupEmail" class="col-sm-2 col-form-label">Email Address: </label>
+              <div class="col-sm-10 row">
+                <div class="col-sm-6">
+                  <input type="password" class="form-control" id="signupEmail">
+                </div>
+                <div class="col-sm-6">
+                  <p>In case you forgot something</p>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="mb-3 row">
+              <label for="humanness" class="col-sm-2 col-form-label">Humanness: </label>
+              <div class="col-sm-10">
+                <img src="images\capcha.png" class="img-fluid capcha" alt="capcha">
+              </div>
+            </div>
+
+            <div class="mb-3 row">
+              <label for="subscribeEmail" class="col-sm-2 col-form-label"> </label>
+              <div class="col-sm-10">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="subscribeEmail">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    I want the inside scoop - please send me email updates!
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-3 row">
+              <label for="termsOfService" class="col-sm-2 col-form-label"></label>
+              <div class="col-sm-10">
+                <p>By clicking "I accept" below, you confirm that you are over 13 years of age and accept the <a href="#">Terms of Service</a>.</p>
+              </div>
+            </div>
+
+            <div class="mb-3 row">
+              <label for="createAccount" class="col-sm-2 col-form-label"></label>
+              <div class="col-sm-10">
+                <button type="button" class="btn btn-secondary">I accept, Create my account.</button>
+              </div>
+            </div>
+
           </form>
         </div>
-
       </div>
-      <div class="col-lg-4 sign-in">
+      <div class="col-lg-3 col-md-12 sign-in">
 
-        <h5>Already a member? <a href="#">Sign In!</a></h5>
+        <h5>Already a member? <a href="/">Sign In!</a></h5>
         <p>Already use Twitter on your phone? <a href="#">Head over here</a> and we'll get you signed up on the web.</p>
 
       </div>
     </div>
 
+    <div class="bottom-bar">
+      <p>Ⓒ 2008 Twitter
+        <a class="footer-link" href="#">About Us</a>
+        <a class="footer-link" href="#">Contact</a>
+        <a class="footer-link" href="#">Blog</a>
+        <a class="footer-link" href="#">Status</a>
+        <a class="footer-link" href="#">Downloads</a>
+        <a class="footer-link" href="#">API</a>
+        <a class="footer-link" href="#">Help</a>
+        <a class="footer-link" href="#">Jobs</a>
+        <a class="footer-link" href="#">TOS</a>
+        <a class="footer-link" href="#">Privacy</a>
+      </p>
+    </div>
+
   </div>
 
-  <div class="bottom-bar">
-    <p>Ⓒ 2008 Twitter
-      <a class="footer-link" href="#">About Us</a>
-      <a class="footer-link" href="#">Contact</a>
-      <a class="footer-link" href="#">Blog</a>
-      <a class="footer-link" href="#">Status</a>
-      <a class="footer-link" href="#">Downloads</a>
-      <a class="footer-link" href="#">API</a>
-      <a class="footer-link" href="#">Help</a>
-      <a class="footer-link" href="#">Jobs</a>
-      <a class="footer-link" href="#">TOS</a>
-      <a class="footer-link" href="#">Privacy</a>
-    </p>
-  </div>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="styles/bootstrap-5.0.2/js/bootstrap.js"></script>
-  <script src="js/login.js" charset="utf-8"></script>
+  <script src="js/account.js" charset="utf-8"></script>
 </body>
 
 </html>
