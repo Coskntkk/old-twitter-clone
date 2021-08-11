@@ -32,10 +32,10 @@
           <form class="" action="/account" method="post">
 
             <div class="mb-3 row">
-              <label for="signupUserName" class="col-sm-2 col-form-label">Username:</label>
-              <div class="col-sm-10 row">
+              <label for="signupUserName" class="col-sm-3 col-form-label">Username:</label>
+              <div class="col-sm-9 row">
                 <div class="col-sm-6">
-                  <input type="text" class="form-control" id="signupUserName">
+                  <input type="text" class="form-control" id="signupUserName", name="userName">
                 </div>
                 <div class="col-sm-6">
                   <p>Your URL: http://twitter.com/<span class="yourUrl"></span></p>
@@ -45,10 +45,10 @@
             </div>
 
             <div class="mb-3 row">
-              <label for="signupPassword" class="col-sm-2 col-form-label">Password: </label>
-              <div class="col-sm-10 row">
+              <label for="signupPassword" class="col-sm-3 col-form-label">Password: </label>
+              <div class="col-sm-9 row">
                 <div class="col-sm-6">
-                  <input type="password" class="form-control" id="signupPassword">
+                  <input type="password" class="form-control" id="signupPassword" name="userPassword">
                 </div>
                 <div class="col-sm-6">
                   <p>6 characters or more (be tricky!)</p>
@@ -57,31 +57,30 @@
             </div>
 
             <div class="mb-3 row">
-              <label for="signupEmail" class="col-sm-2 col-form-label">Email Address: </label>
-              <div class="col-sm-10 row">
+              <label for="signupEmail" class="col-sm-3 col-form-label">Email Address: </label>
+              <div class="col-sm-9 row">
                 <div class="col-sm-6">
-                  <input type="password" class="form-control" id="signupEmail">
+                  <input type="email" class="form-control" id="signupEmail" name="userEmail">
                 </div>
                 <div class="col-sm-6">
                   <p>In case you forgot something</p>
                 </div>
-
               </div>
             </div>
 
             <div class="mb-3 row">
-              <label for="humanness" class="col-sm-2 col-form-label">Humanness: </label>
-              <div class="col-sm-10">
+              <label for="humanness" class="col-sm-3 col-form-label">Humanness: </label>
+              <div class="col-sm-9">
                 <img src="images\capcha.png" class="img-fluid capcha" alt="capcha">
               </div>
             </div>
 
             <div class="mb-3 row">
-              <label for="subscribeEmail" class="col-sm-2 col-form-label"> </label>
-              <div class="col-sm-10">
+              <label for="subscribeEmail" class="col-sm-3 col-form-label"> </label>
+              <div class="col-sm-9">
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="subscribeEmail">
-                  <label class="form-check-label" for="flexCheckDefault">
+                  <input class="form-check-input" type="checkbox" value="true" id="subscribeEmail",  name="userScoop">
+                  <label class="form-check-label" for="subscribeEmail">
                     I want the inside scoop - please send me email updates!
                   </label>
                 </div>
@@ -89,16 +88,16 @@
             </div>
 
             <div class="mb-3 row">
-              <label for="termsOfService" class="col-sm-2 col-form-label"></label>
-              <div class="col-sm-10">
+              <label for="termsOfService" class="col-sm-3 col-form-label"></label>
+              <div class="col-sm-9">
                 <p>By clicking "I accept" below, you confirm that you are over 13 years of age and accept the <a href="#">Terms of Service</a>.</p>
               </div>
             </div>
 
             <div class="mb-3 row">
-              <label for="createAccount" class="col-sm-2 col-form-label"></label>
-              <div class="col-sm-10">
-                <button type="button" class="btn btn-secondary">I accept, Create my account.</button>
+              <label for="createAccount" class="col-sm-3 col-form-label"></label>
+              <div class="col-sm-9">
+                <button type="submit" class="btn btn-secondary">I accept, Create my account.</button>
               </div>
             </div>
 
