@@ -70,17 +70,20 @@
 
         <h4>Please sign in</h4>
 
-        <div class="mb-3">
-          <label for="loginName" class="form-label">user name or email adress:</label>
-          <textarea class="form-control" id="userName" name="loginName" rows="1" style="resize: none"></textarea>
-        </div>
+        <form class="" action="/" method="post">
+          <div class="mb-3">
+            <label for="loginName" class="form-label">user name or email adress:</label>
+            <textarea class="form-control" id="userName" name="loginName" rows="1" style="resize: none"></textarea>
+          </div>
 
-        <div class="mb-3">
-          <label for="loginPassword" class="form-label">password:</label>
-          <textarea class="form-control" id="userPassword" name="loginPassword" rows="1" style="resize: none; -webkit-text-security:disc"></textarea>
-        </div>
+          <div class="mb-3">
+            <label for="loginPassword" class="form-label">password:</label>
+            <textarea class="form-control" id="userPassword" name="loginPassword" rows="1" style="resize: none; -webkit-text-security:disc"></textarea>
+          </div>
 
-        <input type="checkbox" id="rememberMe" name="rememberLogin"> <span>Remember Me</span> <button type="button" class="btn btn-light sign-in-btn">Sign In >></button> <br>
+          <input type="checkbox" id="rememberMe" name="loginRemember"> <span>Remember Me</span>
+          <button type="submit" class="btn btn-light sign-in-btn">Sign In >></button> <br>
+        </form>
 
         <p>Forgor password? <a href="#"><u>Click here.</u></a> </p>
 
