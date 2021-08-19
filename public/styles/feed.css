@@ -1,0 +1,28 @@
+.f-green-big {
+  padding: 0 0 0 2%;
+}
+
+.f-green {
+  background-color: #e0ff92;
+  border: 1px solid #87bc44;
+  padding: 4%;
+  text-align: center;
+}
+
+.f-green-sec {
+  padding: 0;
+  margin-bottom: 2%;
+}
+
+.f-green-hr {
+  margin: 1% 1% 2%;
+}
+
+.f-pp {
+  width: 50px;
+}
+
+.f-small-pp {
+  width: 39px;
+  margin: 1% 0.5%;
+}

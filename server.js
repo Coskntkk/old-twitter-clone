@@ -32,7 +32,6 @@ app.post("/", function(req, res) {
     email: "coskntkk@gmail.com"
   };
 
-
   var data = {
     login: [{
       name: loginID,
@@ -83,6 +82,14 @@ app.post("/register", function(req, res) {
 
   console.log(data);
   res.render("login");
+});
+
+app.get("/feed", function(req, res) {
+  res.render("feed");
+});
+
+app.get("/profile", function(req, res) {
+  res.render("profile");
 });
 
 app.listen(process.env.PORT || 3000, function() {

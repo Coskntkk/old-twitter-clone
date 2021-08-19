@@ -1,0 +1,42 @@
+/* ############################## REGISTER PAGE ############################## */
+.r-row {
+  margin: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.r-register {
+  background-color: white;
+  padding: 20px 10px;
+}
+/* # Register Components # */
+/* Title */
+.title {
+  margin: 2%;
+}
+
+/* Form */
+.r-register-form {
+  margin: 5% 5%;
+}
+
+.r-formcontrol {
+  border: solid 1px darkgray;
+  border-radius: 0;
+  border-color: darkgray;
+  margin-top: 0;
+}
+
+.r-btn {
+  border-color: darkgray;
+  border-radius: 0;
+  background-color: lightgray;
+  color: black;
+}
+
+/* # Sign In Components # */
+.r-sign-in {
+  background-color: #e0ff92;
+  border: 0px solid #87bc44;
+  padding: 1%;
+}
