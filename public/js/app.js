@@ -1,3 +1,4 @@
+// ######################### LOGIN PAGE ####################
 const headerWhat = "What";
 const headerWhy = "Why";
 const headerHow = "How";
@@ -6,14 +7,14 @@ const paragraphWhat = "Twitter is a service for friends, family, anc co-workers 
 const paragraphWhy = "Twitter is easy to use and it is completely free. Communicating with your friends, family and co-workers has never been this easy. Most of all, the most important thing is; Twitter is <strong>completely safe.</strong>";
 const paragraphHow = "All you have to do is create an account and find whoever you want! You can connect, communicate and get know about them with Twitter. Click the button below and get started! It is <strong>really easy.</strong>";
 
-$(".wwh-button").click(function(){
+$(".l-wwh-button").click(function(){
   const selected = this.textContent;
 
-  $(".wwh-button").removeClass("wwh-enabled");
-  $(".wwh-button").addClass("wwh-disabled");
+  $(".l-wwh-button").removeClass("l-wwh-enabled");
+  $(".l-wwh-button").addClass("l-wwh-disabled");
 
-  $(this).removeClass("wwh-disabled");
-  $(this).addClass("wwh-enabled");
+  $(this).removeClass("l-wwh-disabled");
+  $(this).addClass("l-wwh-enabled");
 
   if ( selected == "How?" ) {
     header = headerHow;
@@ -26,10 +27,21 @@ $(".wwh-button").click(function(){
     paragraph = paragraphWhat;
   }
 
-  $(".header-wwh").text(header);
-  $(".twitter-paragraph").html(paragraph);
-})
+  $(".l-header-wwh").text(header);
+  $(".l-twitter-paragraph").html(paragraph);
+});
 
-$(".get-start").click(function(){
-  window.location.href = "/account";
-})
+$(".l-get-start").click(function(){
+  window.location.href = "/register";
+});
+
+// ######################### REGISTER PAGE ####################
+$('#signupUserName').on('input', function() {
+  var content = $('#signupUserName').val();
+  if(content.includes(" ")){
+    $("#yourUrl").css( "color", "red" );
+  } else {
+    $("#yourUrl").css( "color", "black" );
+  }
+  $("#yourUrl").text(content);
+});

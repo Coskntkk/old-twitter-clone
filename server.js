@@ -5,13 +5,14 @@ const https = require("https");
 const ejs = require('ejs');
 
 app = express();
+app.set('view engine', 'ejs');
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 
 app.get("/", function(req, res) {
-  res.sendFile(__dirname + "/login.html");
+  res.render("login");
 });
 
 app.post("/", function(req, res) {
@@ -42,18 +43,18 @@ app.post("/", function(req, res) {
   console.log(data);
 
   if (loginID == admin["name"] && loginPw == admin["password"]) {
-    res.sendFile(__dirname + "/home.html");
+    res.render("feed");
   } else {
-    res.sendFile((__dirname + "/login.html"));
+    res.render("login");
   };
 
 });
 
-app.get("/account", function(req, res) {
-  res.sendFile(__dirname + "/account.html");
+app.get("/register", function(req, res) {
+  res.render("register");
 });
 
-app.post("/account", function(req, res) {
+app.post("/register", function(req, res) {
   var userName = req.body.userName;
   var userPassword = req.body.userPassword;
   var userEmail = req.body.userEmail;
@@ -81,7 +82,7 @@ app.post("/account", function(req, res) {
   };
 
   console.log(data);
-  res.sendFile(__dirname + "/login.html");
+  res.render("login");
 });
 
 app.listen(process.env.PORT || 3000, function() {

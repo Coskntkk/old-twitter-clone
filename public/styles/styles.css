@@ -1,4 +1,4 @@
-/* ########## ELEMENT SELECTORS ########## */
+/* ########## COMMON SELECTORS ########## */
 body {
   background-color: rgb(154, 228, 232);
   margin: auto 25%;
@@ -8,16 +8,25 @@ a {
   text-decoration: none;
 }
 
-/* ########## CLASS SELECTORS ########## */
-/* ##### Main Components ##### */
+p {
+  margin-top: 1%;
+}
+
 .navbar {
   margin-bottom: 20px;
-  padding: auto 0;
+  padding: auto 0;;
+}
+
+.row {
+  margin: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .main {
   background-color: white;
 }
+
 .arrow-up {
   margin-top: 3%;
   margin-left: 3%;
@@ -28,55 +37,72 @@ a {
   border-bottom: 15px solid white;
 }
 
+/* # Footer # */
+.bottom-bar {
+  background-color: white;
+  text-align: center;
+  padding-top: 1%;
+  padding-bottom: 0.025%;
+  margin: 3% auto;
+}
+.bottom-bar a {
+  font-style: normal;
+}
+
+.footer-link {
+  margin: 0 3px;
+}
+
+/* ############################## LOGIN PAGE ############################## */
 /* ### Navbar Components ### */
-.select-lang {
+.l-select-lang {
   background-color: white;
   color: black;
 }
 
 /* ### Main Components ### */
-.row {
+.l-row {
   padding: 20px 10px;
 }
 
 /* # Main Top # */
-.wwh-button {
+.l-wwh-button {
   border-radius: 0;
   padding: 1% 5%;
   margin-bottom: 3%;
 }
 
-.wwh-enabled {
+.l-wwh-enabled {
   color: black;
   border-color: black;
   background-color: white
 }
 
-.wwh-disabled {
+.l-wwh-disabled {
   color: darkgray;
   border-color: darkgray;
   border-style: dashed;
 }
 
 /* # Main Mid # */
-.login-image {
+.l-login-image {
   width: 100%;
   height: 200px;
   border: solid 2px;
   margin-bottom: 5%;
 }
 
-.twitter-paragraph {
+.l-twitter-paragraph {
   font-size: 1.25rem;
 }
 
 /* # Main Bottom # */
-.login-bot {
+.l-login-bot {
   text-align: center;
   margin-bottom: 1%
 }
 
-.get-start {
+.l-get-start {
   background-color: rgb(151, 205, 57);
   font-size: 1.5rem;
   border: solid 2px black;
@@ -86,18 +112,18 @@ a {
 }
 
 /* # Comments Section # */
-.comments {
+.l-comments {
   background-color: rgb(175, 239, 241);
   padding: 1% 7%;
 }
 
-.user-comment {
+.l-user-comment {
   background-color: white;
   position:relative;
   padding: 2% 5% 1%;
   margin: 1rem 0 1em;
 }
-.user-comment:after {
+.l-user-comment:after {
   content: "";
   position: absolute;
   top: 100%;
@@ -108,13 +134,13 @@ a {
 }
 
 /* # Login Side Bar # */
-.login {
+.l-login {
   padding: 0 2.5%;
   font-size: 0.85rem;
   line-height: 1.5rem;
 }
 
-.watch-a-video {
+.l-watch-a-video {
   width: 100%;
   background-color: rgb(255, 73, 60);
   border: solid 2px black;
@@ -125,52 +151,80 @@ a {
   padding: 1%;
 }
 
-.form-control {
+.l-formControl {
   border: solid 1px darkgray;
   border-radius: 0;
   border-color: darkgray;
   margin-top: 0;
 }
 
-.form-label {
+.l-formLabel {
   margin-bottom: 2px;
 }
 
-.what-is-twitter, .what-why-how {
+.l-what-is-twitter, .l-what-why-how {
   display: inline-block;
 }
 
-.sign-in-btn {
+.l-sign-in-btn {
   background-color: lightgray;
   border-color: darkgray;
   border-radius: 0;
-  margin-left: 24%;
+  margin-left: 23%;
   margin-bottom: 5%;
   padding: 1% 3%;
 }
 
-.green-box {
+.l-green-box {
   background-color: #e0ff92;
   border: 1px solid #87bc44;
   padding: 1% 10% 1%;
   text-align: center;
 }
-.green-box-text {
+.l-green-box-text {
   font-size: 0.8rem;
   margin-bottom: 0;
 }
 
-/* # Footer # */
-.bottom-bar {
-  text-align: center;
-  padding-top: 1%;
-  padding-bottom: 0.025%;
-  margin-bottom: 3%;
-}
-.bottom-bar a {
-  font-style: normal;
+/* ############################## REGISTER PAGE ############################## */
+.r-row {
+  margin: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 
-.footer-link {
-  margin: 0 3px;
+.r-register {
+  background-color: white;
+  padding: 20px 10px;
+}
+/* # Register Components # */
+/* Title */
+.title {
+  margin: 2%;
+}
+
+/* Form */
+.r-register-form {
+  margin: 5% 5%;
+}
+
+.r-formcontrol {
+  border: solid 1px darkgray;
+  border-radius: 0;
+  border-color: darkgray;
+  margin-top: 0;
+}
+
+.r-btn {
+  border-color: darkgray;
+  border-radius: 0;
+  background-color: lightgray;
+  color: black;
+}
+
+/* # Sign In Components # */
+.r-sign-in {
+  background-color: #e0ff92;
+  border: 0px solid #87bc44;
+  padding: 1%;
 }
