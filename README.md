@@ -71,9 +71,16 @@ I was unexperienced in techs like EJS, Express and Databases but it became was a
   
 ## Screenshots
 
+- Main Page
 <img src="readme_images\1.png" alt="screenshot-1">
+
+- Register Page
 <img src="readme_images\2.png" alt="screenshot-2">
+
+- Profile Page
 <img src="readme_images\3.png" alt="screenshot-3">
+
+- Feed Page
 <img src="readme_images\4.png" alt="screenshot-4">
 
   
