@@ -4,7 +4,6 @@ const bodyParser = require("body-parser");
 const https = require("https");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
-let currentUser = "61279de16402a340b87907d0";
 
 mongoose.connect('mongodb://localhost:27017/oldTwitterDB', {
   useNewUrlParser: true,
