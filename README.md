@@ -2,7 +2,7 @@
 # Old Twitter Clone
 
 Clone of Twitter from 2007-2008.
-# Tech
+## Tech
 
 **Client:** HTML, CSS, Javascript, EJS, Bootstrap, jQuery
 
