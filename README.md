@@ -71,10 +71,10 @@ I was unexperienced in techs like EJS, Express and Databases but it became was a
   
 ## Screenshots
 
-![App Screenshot](<img src="readme_images\1.png" alt="screenshot-1">)
-![App Screenshot](<img src="readme_images\2.png" alt="screenshot-2">)
-![App Screenshot](<img src="readme_images\3.png" alt="screenshot-3">)
-![App Screenshot](<img src="readme_images\4.png" alt="screenshot-4">)
+<img src="readme_images\1.png" alt="screenshot-1">
+<img src="readme_images\2.png" alt="screenshot-2">
+<img src="readme_images\3.png" alt="screenshot-3">
+<img src="readme_images\4.png" alt="screenshot-4">
 
   
 ## Feedback
