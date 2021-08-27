@@ -26,3 +26,32 @@
   width: 39px;
   margin: 1% 0.5%;
 }
+
+.f-tweet-box {
+  text-align: left;
+  margin: 5px 0 0 0;
+  padding: 0;
+}
+
+.f-tweet-pp {
+  width: 75px;
+}
+
+.f-tweet-content{
+  vertical-align: top;
+  display: inline-block;
+  margin: 1%;
+}
+
+.f-tweet-text, .f-tweet-author {
+  font-size: 1.1rem;
+}
+
+.f-tweet-date {
+  font-size: 0.8rem;
+  color: darkgray;
+}
+
+.f-tweet-hr {
+  margin: 5px 0;
+}
