@@ -37,6 +37,16 @@
           <a href="/user/<%= tweet.tweeter %>" class="f-tweet-author"><b> <%= tweet.tweeter %></b></a>
           <span class="f-tweet-text"> <%= tweet.text %> </span>
           <span class="f-tweet-date"> <%= tweet.date %> </span>
+          <i class="far fa-star f-unfaved"></i>
+          <!-- <i class="fas fa-star f-faved"></i> -->
+          <form class="" action="/delete" method="post" style="display: inline-block">
+            <input type="hidden" name="tweetID" value="<%= tweet._id %>">
+            <input type="hidden" name="authorID" value="<%= tweet.author %>">
+            <input type="hidden" name="page" value="<%= "feed" %>">
+            <button type="submit" name="button" class="delete-button">
+              <i class="far fa-trash-alt f-del"></i>
+            </button>
+          </form>
         </div>
         <hr class="f-tweet-hr">
       </div>
@@ -59,14 +69,14 @@
       <hr class="f-green-hr">
       <div>
         <img class="f-pp" src="images/<%= user.image %>" alt="">
-        <p class="f-gUsername" style="display: inline-block;"> <%= user.nick %> </p>
+      <p class="f-gUsername" style="display: inline-block;"> <%= user.nick %> </p>
     </div>
   </div><br>
 
   <div>
     <b>Currently</b>
     <hr class="f-green-hr">
-    <a class="l-green-id" href="/user/<%= user.user %>" >@<%= user.user %> </a>
+    <a class="l-green-id" href="/user/<%= user.user %>">@<%= user.user %> </a>
     <p class="l-green-last-tweet" style="display: inline-block;"> <%= lastTweet[0].text %> </p>
   </div><br>
 

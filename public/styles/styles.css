@@ -4,6 +4,10 @@ body {
   margin: auto 25%;
 }
 
+nav {
+  background-color: rgb(154, 228, 232);
+}
+
 a {
   text-decoration: none;
 }
@@ -12,11 +16,42 @@ p {
   margin-top: 1%;
 }
 
+/* # Navbar # */
 .navbar {
   margin-bottom: 20px;
-  padding: auto 0;;
+  padding: auto 0;
 }
 
+.nav2 {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.nav-right {
+  background-color: white;
+  padding: 10px 15px;
+}
+
+.search {
+  border-radius: 0;
+  padding: 0 0 0 10px;
+}
+
+.search-button {
+  border: solid 1px darkgray;
+  border-radius: 0;
+  border-color: darkgray;
+  margin-top: 0;
+  background-color: lightgray;
+  margin-right: 30px;
+}
+
+.nav-link {
+  color: blue;
+  text-decoration: none;
+}
+
+/* # Main # */
 .row {
   margin: 0;
   padding-left: 0;
@@ -31,6 +66,11 @@ p {
   border-left: 15px solid transparent;
   border-right: 15px solid transparent;
   border-bottom: 15px solid white;
+}
+
+.delete-button {
+  border: 0;
+  background-color: transparent;
 }
 
 /* # Footer # */

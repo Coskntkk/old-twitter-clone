@@ -67,12 +67,12 @@ app.get("/error", function(req, res) {
 
 app.get("/feed", function(req, res) {
   User.findOne({
-    _id: currentUser
+    user: "admin"
   }, function(err, foundUser) {
     if (!err) {
       let tweets = [];
       Tweet.find({
-        author: currentUser
+        author: foundUser._id
       }, function(err, foundTweets) {
 
         if(foundTweets.length !==0){
@@ -93,7 +93,7 @@ app.get("/feed", function(req, res) {
           res.render("feed", {
             user: foundUser,
             tweets: foundTweets,
-            lastTweet: {text: "not updated yet"}
+            lastTweet: [{text: "not updated yet"}]
           });
         }
 
@@ -114,7 +114,7 @@ app.get("/profile", function(req, res) {
 
       let tweets = [];
       Tweet.find({
-        author: currentUser
+        author: foundUser._id
       }, function(err, foundTweets) {
         res.render("profile", {
           user: foundUser,
@@ -242,6 +242,39 @@ app.post("/register", function(req, res) {
   });
 
 });
+
+app.post("/delete", function(req, res) {
+  // This post method gets tweet and author ids
+  let tweetID = req.body.tweetID;
+  let authorID = req.body.authorID;
+  let page = req.body.page;
+
+  // Delete from author's updates list
+  User.findOne({_id: authorID}, function(err, foundUser) {
+    if(!err){
+      let index = foundUser.updates.indexOf(tweetID);
+      foundUser.updates.splice(index, 1);
+      foundUser.save();
+    }
+  });
+
+  // Delete tweet from liked people's liked lists
+
+  // Delete tweet from database
+  Tweet.deleteOne({_id: tweetID}, function(err){
+    if(!err){}
+  });
+
+  if (page === "feed"){
+    res.redirect("feed");
+  } else if (page === "profile") {
+    res.redirect("profile")
+  } else {
+    res.redirect("error")
+  }
+
+});
+
 
 
 

@@ -8,7 +8,17 @@
       <span href="" class="p-last-tweet-author disabled"> <%= user.user %> </span>
     </div>
     <p class="p-last-tweet-text p-p"> <%= (tweets.length !== 0) ? tweets[tweets.length-1].text : "Not updated yed." %> </p>
-    <p class="p-last-tweet-date p-p"> <%= (tweets.length !== 0) ? tweets[tweets.length-1].date : "" %> </p>
+    <p class="p-last-tweet-date p-p" style="display:inline-block"> <%= (tweets.length !== 0) ? tweets[tweets.length-1].date : "" %> </p>
+    <% if (tweets.length !==0) { %>
+    <form class="" action="/delete" method="post" style="display: inline-block">
+      <input type="hidden" name="tweetID" value="<%= tweets[tweets.length-1]._id %>">
+      <input type="hidden" name="authorID" value="<%= tweets[tweets.length-1].author %>">
+      <input type="hidden" name="page" value="<%= "profile" %>">
+      <button type="submit" name="button" class="delete-button">
+        <i class="far fa-trash-alt f-del"></i>
+      </button>
+    </form>
+    <% } %>
   </div>
 
   <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
@@ -28,6 +38,14 @@
           <div class="f-tweet-content">
             <span class="p-tweet-text"><%= tweets[i].text %> </span>
             <span class="p-tweet-date"><%= tweets[i].date %> </span>
+            <form class="" action="/delete" method="post" style="display: inline-block">
+              <input type="hidden" name="tweetID" value="<%= tweets[i]._id %>">
+              <input type="hidden" name="authorID" value="<%= tweets[i].author %>">
+              <input type="hidden" name="page" value="<%= "profile" %>">
+              <button type="submit" name="button" class="delete-button">
+                <i class="far fa-trash-alt f-del"></i>
+              </button>
+            </form>
           </div>
           <hr class="f-tweet-hr">
         </div>

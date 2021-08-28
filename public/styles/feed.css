@@ -55,3 +55,11 @@
 .f-tweet-hr {
   margin: 5px 0;
 }
+
+.f-unfaved, .f-del {
+  color: darkgray;
+}
+
+.f-faved {
+  color: orange;
+}
