@@ -12,33 +12,36 @@
     <button type="submit" name="update">update</button>
   </form>
 
-  <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
-      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Recent</button>
+      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#recent" type="button" role="tab" aria-controls="home" aria-selected="true">Recent</button>
     </li>
     <li class="nav-item" role="presentation">
-      <button class="nav-link disabled" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Replies</button>
+      <button class="nav-link disabled" id="profile-tab" data-bs-toggle="tab" data-bs-target="#replies" type="button" role="tab" aria-controls="profile" aria-selected="false">Replies</button>
     </li>
     <li class="nav-item" role="presentation">
-      <button class="nav-link disabled" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Archieve</button>
+      <button class="nav-link disabled" id="contact-tab" data-bs-toggle="tab" data-bs-target="#archieve" type="button" role="tab" aria-controls="contact" aria-selected="false">Archieve</button>
     </li>
     <li class="nav-item" role="presentation">
-      <button class="nav-link disabled" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Everyone</button>
+      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#everyone" type="button" role="tab" aria-controls="contact" aria-selected="false">Everyone</button>
     </li>
   </ul>
-  <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active f-tweets" id="home" role="tabpanel" aria-labelledby="home-tab">
 
-      <%if(tweets){%>
-      <%tweets.slice().reverse().forEach(function(tweet){%>
-      <div class="container-fluid f-tweet-box">
-        <img class="f-tweet-pp" src="/images/<%= tweet.img %>" alt="">
-        <div class="col-9 f-tweet-content">
-          <a href="/user/<%= tweet.tweeter %>" class="f-tweet-author"><b> <%= tweet.tweeter %></b></a>
-          <span class="f-tweet-text"> <%= tweet.text %> </span>
-          <span class="f-tweet-date"> <%= tweet.date %> </span>
-          <i class="far fa-star f-unfaved"></i>
-          <!-- <i class="fas fa-star f-faved"></i> -->
+  <div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="recent" role="tabpanel" aria-labelledby="recent-tab">
+
+    <%if(tweets){%>
+    <%tweets.slice().reverse().forEach(function(tweet){%>
+    <div class="container-fluid f-tweet-box">
+      <img class="f-tweet-pp" src="/images/<%= tweet.img %>" alt="">
+
+      <div class="col-9 f-tweet-content">
+
+        <a href="/user/<%= tweet.tweeter %>" class="f-tweet-author"><b> <%= tweet.tweeter %></b></a>
+        <span class="f-tweet-text"> <%= tweet.text %> </span>
+        <span class="f-tweet-date"> <%= tweet.date %> </span>
+
+        <% if(tweet.author == user._id){ // if user's tweet %>
           <form class="" action="/delete" method="post" style="display: inline-block">
             <input type="hidden" name="tweetID" value="<%= tweet._id %>">
             <input type="hidden" name="authorID" value="<%= tweet.author %>">
@@ -47,14 +50,94 @@
               <i class="far fa-trash-alt f-del"></i>
             </button>
           </form>
-        </div>
-        <hr class="f-tweet-hr">
-      </div>
-      <%});%>
-      <%}%>
+        <% } %>
 
+        <% if(tweet.likes.includes(user._id)){ // if faved %>
+          <form class="" action="/unfav" method="post" style="display: inline-block">
+            <input type="hidden" name="tweetID" value="<%= tweet._id %>">
+            <input type="hidden" name="userID" value="<%= user._id %>">
+            <input type="hidden" name="page" value="<%= "feed" %>">
+            <button type="submit" name="button" class="delete-button">
+              <i class="fas fa-star f-faved"></i>
+            </button>
+          </form>
+        <% } else { // if unfaved %>
+          <form class="" action="/fav" method="post" style="display: inline-block">
+            <input type="hidden" name="tweetID" value="<%= tweet._id %>">
+            <input type="hidden" name="userID" value="<%= user._id %>">
+            <button type="submit" name="button" class="delete-button">
+              <i class="far fa-star f-unfaved"></i>
+            </button>
+          </form>
+        <% } %>
+        <% if ( tweet.likes.length > 0 ) { %>
+        <span><%= tweet.likes.length %></span>
+        <% } %>
+
+      </div>
+      <hr class="f-tweet-hr">
     </div>
+    <%});%>
+    <%}%>
+
   </div>
+  <div class="tab-pane fade" id="replies" role="tabpanel" aria-labelledby="replies-tab">...</div>
+  <div class="tab-pane fade" id="archieve" role="tabpanel" aria-labelledby="archieve-tab">...</div>
+  <div class="tab-pane fade" id="everyone" role="tabpanel" aria-labelledby="everyone-tab">
+
+    <%if(allPosts){%>
+    <%allPosts.slice().reverse().forEach(function(post){%>
+    <div class="container-fluid f-tweet-box">
+      <img class="f-tweet-pp" src="/images/<%= post.img %>" alt="">
+
+      <div class="col-9 f-tweet-content">
+
+        <a href="/user/<%= post.tweeter %>" class="f-tweet-author"><b> <%= post.tweeter %></b></a>
+        <span class="f-tweet-text"> <%= post.text %> </span>
+        <span class="f-tweet-date"> <%= post.date %> </span>
+
+        <% if(post.author == user._id){ // if user's tweet %>
+          <form class="" action="/delete" method="post" style="display: inline-block">
+            <input type="hidden" name="tweetID" value="<%= post._id %>">
+            <input type="hidden" name="authorID" value="<%= post.author %>">
+            <input type="hidden" name="page" value="<%= "feed" %>">
+            <button type="submit" name="button" class="delete-button">
+              <i class="far fa-trash-alt f-del"></i>
+            </button>
+          </form>
+        <% } %>
+
+        <% if(post.likes.includes(user._id)){ // if faved %>
+          <form class="" action="/unfav" method="post" style="display: inline-block">
+            <input type="hidden" name="tweetID" value="<%= post._id %>">
+            <input type="hidden" name="userID" value="<%= user._id %>">
+            <input type="hidden" name="page" value="<%= "feed" %>">
+            <button type="submit" name="button" class="delete-button">
+              <i class="fas fa-star f-faved"></i>
+            </button>
+          </form>
+        <% } else { // if unfaved %>
+          <form class="" action="/fav" method="post" style="display: inline-block">
+
+            <input type="hidden" name="tweetID" value="<%= post._id %>">
+            <input type="hidden" name="userID" value="<%= user._id %>">
+            <button type="submit" name="button" class="delete-button">
+              <i class="far fa-star f-unfaved"></i>
+            </button>
+          </form>
+        <% } %>
+        <% if ( post.likes.length > 0 ) { %>
+          <span><%= post.likes.length %></span>
+        <% } %>
+
+      </div>
+      <hr class="f-tweet-hr">
+    </div>
+    <%});%>
+    <%}%>
+
+  </div>
+</div>
 
 </div>
 <div class="col-lg-4 f-green-big">
@@ -73,12 +156,20 @@
     </div>
   </div><br>
 
+  
   <div>
     <b>Currently</b>
     <hr class="f-green-hr">
     <a class="l-green-id" href="/user/<%= user.user %>">@<%= user.user %> </a>
-    <p class="l-green-last-tweet" style="display: inline-block;"> <%= lastTweet[0].text %> </p>
+    <!--
+    <% //if (user.updates.length !== 0) { %>
+      <p class="l-green-last-tweet" style="display: inline-block;"> <%= //user.updates[user.updates.length-1].text %> </p>
+    <% //} else { %>
+      <p class="l-green-last-tweet" style="display: inline-block;"> Not updated yet. </p>
+    <% //} %>
+    -->
   </div><br>
+  
 
   <div class="f-green-sec">
     <div class="d-flex justify-content-between">

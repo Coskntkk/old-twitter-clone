@@ -3,13 +3,56 @@
 <div class="col-lg-8 p-main" style="background-color: white; text-align: center;">
 
   <div class="container-fluid p-last-tweet-box">
+
+    <!-- PROFILE PIC AND NAME -->
     <div class="p-last-tweet-top">
       <img class="f-tweet-pp" src="/images/<%= user.image %>" alt="">
       <span href="" class="p-last-tweet-author disabled"> <%= user.user %> </span>
     </div>
+
+    <!-- FOLLOW / UNFOLLOW BUTTON -->
+    <% if ( currentUser._id.toString() !== user._id.toString() ) { %>
+    <% if ( user.followers.includes(currentUser._id.toString()) ) { %>
+    <form class="" action="/unfollow" method="post">
+      <input type="hidden" name="followerID" value="<%= currentUser._id %>">
+      <input type="hidden" name="accountID" value="<%= user._id %>">
+      <button class="follow-button" type="submit" name="button">Unfollow</button>
+    </form>
+    <% } else { %>
+    <form class="" action="/follow" method="post">
+      <input type="hidden" name="followerID" value="<%= currentUser._id %>">
+      <input type="hidden" name="accountID" value="<%= user._id %>">
+      <button class="follow-button" type="submit" name="button">Follow</button>
+    </form>
+    <% } %>
+    <% } %>
+
+    <% if (tweets.length !==0) { %>
     <p class="p-last-tweet-text p-p"> <%= (tweets.length !== 0) ? tweets[tweets.length-1].text : "Not updated yed." %> </p>
     <p class="p-last-tweet-date p-p" style="display:inline-block"> <%= (tweets.length !== 0) ? tweets[tweets.length-1].date : "" %> </p>
-    <% if (tweets.length !==0) { %>
+
+    <!-- LAST TWEET -->
+    <% if(tweets[tweets.length-1].likes.includes(currentUser._id)){ // if faved %>
+    <form class="" action="/unfav" method="post" style="display: inline-block">
+      <input type="hidden" name="tweetID" value="<%= tweets[tweets.length-1]._id %>">
+      <input type="hidden" name="userID" value="<%= currentUser._id %>">
+      <input type="hidden" name="page" value="<%= "feed" %>">
+      <button type="submit" name="button" class="delete-button">
+        <i class="fas fa-star f-faved"></i>
+      </button>
+    </form>
+    <% } else { // if unfaved %>
+    <form class="" action="/fav" method="post" style="display: inline-block">
+      <input type="hidden" name="tweetID" value="<%= tweets[tweets.length-1]._id %>">
+      <input type="hidden" name="userID" value="<%= currentUser._id %>">
+      <button type="submit" name="button" class="delete-button">
+        <i class="far fa-star f-unfaved"></i>
+      </button>
+    </form>
+    <% } %>
+
+    <% if (currentUser._id == tweets[0].author) { %>
+    <!-- TWEET DELETE BUTTON -->
     <form class="" action="/delete" method="post" style="display: inline-block">
       <input type="hidden" name="tweetID" value="<%= tweets[tweets.length-1]._id %>">
       <input type="hidden" name="authorID" value="<%= tweets[tweets.length-1].author %>">
@@ -18,6 +61,8 @@
         <i class="far fa-trash-alt f-del"></i>
       </button>
     </form>
+    <% } %>
+
     <% } %>
   </div>
 
@@ -33,23 +78,45 @@
     <div class="tab-pane fade show active f-tweets" id="home" role="tabpanel" aria-labelledby="home-tab">
 
       <% if (tweets.length != 0) { %>
-        <% for (let i=tweets.length-2; 0<=i; i--) { %>
-        <div class="container-fluid f-tweet-box">
-          <div class="f-tweet-content">
-            <span class="p-tweet-text"><%= tweets[i].text %> </span>
-            <span class="p-tweet-date"><%= tweets[i].date %> </span>
-            <form class="" action="/delete" method="post" style="display: inline-block">
-              <input type="hidden" name="tweetID" value="<%= tweets[i]._id %>">
-              <input type="hidden" name="authorID" value="<%= tweets[i].author %>">
-              <input type="hidden" name="page" value="<%= "profile" %>">
-              <button type="submit" name="button" class="delete-button">
-                <i class="far fa-trash-alt f-del"></i>
-              </button>
-            </form>
-          </div>
-          <hr class="f-tweet-hr">
+      <% for (let i=tweets.length-2; 0<=i; i--) { %>
+      <div class="container-fluid f-tweet-box">
+        <div class="f-tweet-content">
+          <span class="p-tweet-text"><%= tweets[i].text %> </span>
+          <span class="p-tweet-date"><%= tweets[i].date %> </span>
+
+          <% if(tweets[i].likes.includes(currentUser._id)){ // if faved %>
+          <form class="" action="/unfav" method="post" style="display: inline-block">
+            <input type="hidden" name="tweetID" value="<%= tweets[i]._id %>">
+            <input type="hidden" name="userID" value="<%= currentUser._id %>">
+            <input type="hidden" name="page" value="<%= "feed" %>">
+            <button type="submit" name="button" class="delete-button">
+              <i class="fas fa-star f-faved"></i>
+            </button>
+          </form>
+          <% } else { // if unfaved %>
+          <form class="" action="/fav" method="post" style="display: inline-block">
+            <input type="hidden" name="tweetID" value="<%= tweets[i]._id %>">
+            <input type="hidden" name="userID" value="<%= currentUser._id %>">
+            <button type="submit" name="button" class="delete-button">
+              <i class="far fa-star f-unfaved"></i>
+            </button>
+          </form>
+          <% } %>
+
+          <% if (currentUser._id == tweets[i].author) { %>
+          <form class="" action="/delete" method="post" style="display: inline-block">
+            <input type="hidden" name="tweetID" value="<%= tweets[i]._id %>">
+            <input type="hidden" name="authorID" value="<%= tweets[i].author %>">
+            <input type="hidden" name="page" value="<%= "profile" %>">
+            <button type="submit" name="button" class="delete-button">
+              <i class="far fa-trash-alt f-del"></i>
+            </button>
+          </form>
+          <% } %>
         </div>
-        <% } %>
+        <hr class="f-tweet-hr">
+      </div>
+      <% } %>
       <% }; %>
 
     </div>

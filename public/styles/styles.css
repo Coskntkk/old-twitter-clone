@@ -71,6 +71,7 @@ p {
 .delete-button {
   border: 0;
   background-color: transparent;
+  margin: 0;
 }
 
 /* # Footer # */
@@ -87,4 +88,12 @@ p {
 
 .footer-link {
   margin: 0 3px;
+}
+
+.follow-button {
+  width: 75px;
+  border: solid 1px black;
+  color: white;
+  background-color: darkgray;
+  margin-top: 10px;
 }

@@ -48,16 +48,17 @@ Start the server
 - MongoDB database using mongoose
 - Profile pages with express routing parameters
 - Template for profile and feed pages with EJS
+- Fav icon, fav and unfav functions for tweets
+- Delete icon and deleting your own tweets
+- Following & unfollowing system
+- Logging out
 
   
 ## Roadmap
 
-- Fav icon and fav functions for tweets
-- Deleting your own tweets
-- Following system
 - Searching for tweets and users
-- Logging out
-- Changing profile name & bio
+- List page for search results and lists of followers, followings, liked tweets etc.
+- Changing profile name & bio ( canceled )
 - Layout improvements
 
   
