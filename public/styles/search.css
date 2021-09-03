@@ -1,0 +1,23 @@
+.s-no-found {
+  text-align: left;
+  margin-top: 2%;
+}
+
+.s-user-box {
+  text-align: left;
+  padding: 0;
+  vertical-align: top;
+}
+
+.s-user {
+  display: inline-block;
+}
+
+.s-user-name {
+  font-size: 1.5rem;
+}
+
+.s-nick-name {
+  display: block;
+  font-size: 1rem;
+}

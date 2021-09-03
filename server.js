@@ -5,48 +5,49 @@ const https = require("https");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
 
+// Mongoose Configuration
 mongoose.connect('mongodb://localhost:27017/oldTwitterDB', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
 });
 
+// Document Schemas
 const tweetSchema = {
-  tweeter: String,
-  author: String,
-  text: String,
-  likes: [String],
-  date: String,
-  img: String,
+  tweeter: String, // Display name of author
+  author: String, // ID of author
+  text: String, // Content of tweet
+  likes: [String], // ID's of liked accounts
+  date: String, // Date
+  img: String, // Profile image of author
 }
-
 const userSchema = {
   user: {
     type: String,
     required: true,
     unique: true
-  },
+  }, // Unique name of account
   email: {
     type: String,
     required: true,
     match: /.+\@.+\..+/,
     unique: true
-  },
+  }, // Email
   password: {
     type: String,
     required: true,
-  },
-  nick: String,
-  image: String,
-  following: [String],
-  followers: [String],
-  updates: [String],
-  favorites: [String],
+  }, // Password
+  nick: String, // Display name
+  image: String, // Profile image url
+  following: [String], // List of following accounts
+  followers: [String], // List of follower accounts
+  updates: [String], // List of tweet id's
+  favorites: [String], // List of liked tweets's ids
 }
-
 const Tweet = mongoose.model("Tweet", tweetSchema);
 const User = mongoose.model("User", userSchema);
 
+// Express & EJS Configuration
 app = express();
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
@@ -54,6 +55,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+// User account
 let currentUser;
 ///*
 User.findOne({
@@ -65,6 +67,7 @@ User.findOne({
 });
 //*/
 
+// Main page to log in
 app.get("/", function(req, res) {
   foundUser = null;
   res.render("login", {
@@ -72,74 +75,96 @@ app.get("/", function(req, res) {
   });
 });
 
+// Register page for account creation
 app.get("/register", function(req, res) {
   res.render("register", {
     currentUser: currentUser
   });
 });
 
+// Error page if something wents wrong
 app.get("/error", function(req, res) {
   res.render("error", {
     currentUser: currentUser
   });
 });
 
+// FEED/HOME PAGE
 app.get("/feed", function(req, res) {
-  User.findOne({
-    user: currentUser.user
-  }, function(err, foundUser) {
-    if (!err) {
-      let tweets = [];
-      Tweet.find({
-        author: foundUser._id
-      }, function(err, foundTweets) {
 
-        let allPosts;
-        Tweet.find({}, ).limit(10).exec(function(err, posts) {
-          allPosts = posts;
-        });
+  if (!currentUser) {
 
-        if (foundTweets.length !== 0) {
+    // Returns to the main page if did not log in
+    res.redirect("/");
+  } else {
 
-          Tweet.find({
-            _id: foundUser.updates[foundUser.updates.length - 1],
-          }, function(err, tweet) {
+    // Updates the current user
+    User.findOne({
+      _id: currentUser._id
+    }, function(err, user) {
+      currentUser = user;
 
-            res.render("feed", {
-              currentUser: currentUser,
-              user: foundUser,
-              tweets: foundTweets,
-              lastTweet: tweet,
-              allPosts: allPosts,
-            });
+      // Gets a list of user and his followings
+      let allTweetsFrom = [...currentUser.following];
+      allTweetsFrom.push(currentUser._id.toString());
 
-          });
+      // Variables for feed page tabs
+      let recents;
+      let everyones;
+      let lastTweet;
 
+      // Gets's user's last tweet
+      let lastTweetID = currentUser.updates[currentUser.updates.length - 1];
+      Tweet.findOne({
+        _id: lastTweetID
+      }, function(err, foundTweet) {
+        if (foundTweet) {
+          lastTweet = foundTweet;
         } else {
-          res.render("feed", {
-            currentUser: currentUser,
-            user: foundUser,
-            tweets: foundTweets,
-            lastTweet: [{
-              text: "not updated yet"
-            }],
-            allPosts: allPosts,
-          });
+          lastTweet = {
+            // If no last tweet
+            text: "Not updated yet."
+          };
         }
 
+        // Gets user and followings tweets to show in the recents tab
+        Tweet.find({
+          author: {
+            $in: allTweetsFrom
+          }
+        }, function(err, foundTweets) {
+          if (!err) {
+            recents = foundTweets;
+          }
+
+          // Gets 10 last tweets of all to show in the everyone tab
+          Tweet.find({}, ).limit(10).exec(function(err, posts) {
+            if (!err) {
+              everyones = posts;
+            }
+
+            // Feed page with needed values
+            res.render("feed", {
+              currentUser: currentUser,
+              recents: recents,
+              everyones: everyones,
+              lastTweet: lastTweet,
+            });
+          });
+        });
       });
-    } else {
-      res.redirect("error");
-    }
-  });
+    });
+  }
 });
 
 
 app.get("/profile", function(req, res) {
 
+  // Updates the current user
   User.findOne({
-    user: currentUser.user
+    _id: currentUser._id
   }, function(err, foundUser) {
+    currentUser = foundUser;
 
     if (!err) {
 
@@ -282,10 +307,6 @@ app.post("/tweet", function(req, res) {
     };
   });
 
-  /*
- 
-  */
-
   res.redirect("feed");
 });
 
@@ -370,7 +391,7 @@ app.post("/fav", function(req, res) {
   });
 
   // Redirects to the same page.
-  res.redirect("/feed");
+  res.redirect("back");
 });
 
 // Post for removing a favorite
@@ -406,7 +427,7 @@ app.post("/unfav", function(req, res) {
   });
 
   // Redirects to the same page.
-  res.redirect("/feed");
+  res.redirect("back");
 });
 
 // Post for following an account
@@ -436,7 +457,7 @@ app.post("/follow", function(req, res) {
     if (!err) {}
   });
 
-  res.redirect("/feed");
+  res.redirect("back");
 });
 
 // Post for unfollowing an account
@@ -470,10 +491,44 @@ app.post("/unfollow", function(req, res) {
     if (!err) {}
   });
 
-  res.redirect("/feed");
+  res.redirect("back");
 });
 
+app.post("/search", function(req, res){
+  const searchWord = req.body.searchWord.toLowerCase();
 
+  let tweets;
+  let users;
+
+  User.findOne({ _id: currentUser._id}, function(err, foundUser) {
+    currentUser = foundUser;
+
+    User.find({ user: { $regex: searchWord.toLowerCase(), $options: "i" }}, function(err, foundUsers) {
+      users = foundUsers;
+
+      Tweet.find({ text: { $regex: searchWord.toLowerCase(), $options: "i" }}, function(err, foundTweets) {
+        tweets = foundTweets;
+
+        res.render("list", {
+          currentUser: currentUser,
+          tweets: tweets,
+          users: users,
+        });
+      });
+    });
+  });
+
+  //res.redirect("back");
+});
+/*
+app.post("/follows", function(req, res) {
+
+});
+
+app.post("/followers", function(req, res) {
+
+});
+*/
 
 
 

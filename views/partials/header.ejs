@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="/styles/register.css">
   <link rel="stylesheet" href="/styles/feed.css">
   <link rel="stylesheet" href="/styles/profile.css">
+  <link rel="stylesheet" href="/styles/search.css">
 
   <script src="https://kit.fontawesome.com/d1ba608ce2.js" crossorigin="anonymous"></script>
 </head>
@@ -27,7 +28,7 @@
       <img class="banner" src="/images/twitter.png" alt="twitter_logo">
       <div class="d-flex nav-right">
         <form class="d-flex" action="/search" method="post">
-          <input class="form-control me-2 search" type="search" placeholder="Name or word" aria-label="Search">
+          <input class="form-control me-2 search" name="searchWord" type="search" placeholder="Name or word" aria-label="Search">
           <button class="btn search-button" type="submit">search</button>
         </form>
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -38,7 +39,7 @@
             <a class="nav-link" href="/feed">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Find & Follow</a>
+            <a class="nav-link disabled" href="#">Find & Follow</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/profile">Profile</a>

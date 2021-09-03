@@ -7,7 +7,7 @@
   </div>
 
   <form class="" action="/tweet" method="post">
-    <input type="hidden" name="userID" value="<%=user._id%>">
+    <input type="hidden" name="userID" value="<%=currentUser._id%>">
     <textarea class="form-control" id="tweet" name="tweetText" rows="3" maxlength="140" style="resize: none;"></textarea>
     <button type="submit" name="update">update</button>
   </form>
@@ -28,113 +28,117 @@
   </ul>
 
   <div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="recent" role="tabpanel" aria-labelledby="recent-tab">
+    <!-- Recent tab, tweets from self and followed ones -->
+    <div class="tab-pane fade show active" id="recent" role="tabpanel" aria-labelledby="recent-tab">
 
-    <%if(tweets){%>
-    <%tweets.slice().reverse().forEach(function(tweet){%>
-    <div class="container-fluid f-tweet-box">
-      <img class="f-tweet-pp" src="/images/<%= tweet.img %>" alt="">
+      <%if(recents){%>
+      <%recents.slice().reverse().forEach(function(recent){%>
+      <div class="container-fluid f-tweet-box">
+        <img class="f-tweet-pp" src="/images/<%= recent.img %>" alt="">
 
-      <div class="col-9 f-tweet-content">
+        <div class="col-9 f-tweet-content">
 
-        <a href="/user/<%= tweet.tweeter %>" class="f-tweet-author"><b> <%= tweet.tweeter %></b></a>
-        <span class="f-tweet-text"> <%= tweet.text %> </span>
-        <span class="f-tweet-date"> <%= tweet.date %> </span>
+          <a href="/user/<%= recent.tweeter %>" class="f-tweet-author"><b> <%= recent.tweeter %></b></a>
+          <span class="f-tweet-text"> <%= recent.text %> </span>
+          <span class="f-tweet-date"> <%= recent.date %> </span>
 
-        <% if(tweet.author == user._id){ // if user's tweet %>
+          <% if(recent.author == currentUser._id){ // if user's tweet %>
           <form class="" action="/delete" method="post" style="display: inline-block">
-            <input type="hidden" name="tweetID" value="<%= tweet._id %>">
-            <input type="hidden" name="authorID" value="<%= tweet.author %>">
+            <input type="hidden" name="tweetID" value="<%= recent._id %>">
+            <input type="hidden" name="authorID" value="<%= recent.author %>">
             <input type="hidden" name="page" value="<%= "feed" %>">
             <button type="submit" name="button" class="delete-button">
               <i class="far fa-trash-alt f-del"></i>
             </button>
           </form>
-        <% } %>
+          <% } %>
 
-        <% if(tweet.likes.includes(user._id)){ // if faved %>
+          <% if(recent.likes.includes(currentUser._id)){ // if faved %>
           <form class="" action="/unfav" method="post" style="display: inline-block">
-            <input type="hidden" name="tweetID" value="<%= tweet._id %>">
-            <input type="hidden" name="userID" value="<%= user._id %>">
+            <input type="hidden" name="tweetID" value="<%= recent._id %>">
+            <input type="hidden" name="userID" value="<%= currentUser._id %>">
             <input type="hidden" name="page" value="<%= "feed" %>">
             <button type="submit" name="button" class="delete-button">
               <i class="fas fa-star f-faved"></i>
             </button>
           </form>
-        <% } else { // if unfaved %>
+          <% } else { // if unfaved %>
           <form class="" action="/fav" method="post" style="display: inline-block">
-            <input type="hidden" name="tweetID" value="<%= tweet._id %>">
-            <input type="hidden" name="userID" value="<%= user._id %>">
+            <input type="hidden" name="tweetID" value="<%= recent._id %>">
+            <input type="hidden" name="userID" value="<%= currentUser._id %>">
             <button type="submit" name="button" class="delete-button">
               <i class="far fa-star f-unfaved"></i>
             </button>
           </form>
-        <% } %>
-        <% if ( tweet.likes.length > 0 ) { %>
-        <span><%= tweet.likes.length %></span>
-        <% } %>
+          <% } %>
+          <% if ( recent.likes.length > 0 ) { %>
+          <span><%= recent.likes.length %></span>
+          <% } %>
 
+        </div>
+        <hr class="f-tweet-hr">
       </div>
-      <hr class="f-tweet-hr">
-    </div>
-    <%});%>
-    <%}%>
+      <%});%>
+      <%}%>
 
   </div>
+
   <div class="tab-pane fade" id="replies" role="tabpanel" aria-labelledby="replies-tab">...</div>
   <div class="tab-pane fade" id="archieve" role="tabpanel" aria-labelledby="archieve-tab">...</div>
+
+  <!-- Everyone tab, tweets from everyone -->
   <div class="tab-pane fade" id="everyone" role="tabpanel" aria-labelledby="everyone-tab">
 
-    <%if(allPosts){%>
-    <%allPosts.slice().reverse().forEach(function(post){%>
-    <div class="container-fluid f-tweet-box">
-      <img class="f-tweet-pp" src="/images/<%= post.img %>" alt="">
+    <%if(everyones){%>
+      <%everyones.slice().reverse().forEach(function(everyone){%>
+      <div class="container-fluid f-tweet-box">
+        <img class="f-tweet-pp" src="/images/<%= everyone.img %>" alt="">
 
-      <div class="col-9 f-tweet-content">
+        <div class="col-9 f-tweet-content">
 
-        <a href="/user/<%= post.tweeter %>" class="f-tweet-author"><b> <%= post.tweeter %></b></a>
-        <span class="f-tweet-text"> <%= post.text %> </span>
-        <span class="f-tweet-date"> <%= post.date %> </span>
+          <a href="/user/<%= everyone.tweeter %>" class="f-tweet-author"><b> <%= everyone.tweeter %></b></a>
+          <span class="f-tweet-text"> <%= everyone.text %> </span>
+          <span class="f-tweet-date"> <%= everyone.date %> </span>
 
-        <% if(post.author == user._id){ // if user's tweet %>
+          <% if(everyone.author == currentUser._id){ // if user's tweet %>
           <form class="" action="/delete" method="post" style="display: inline-block">
-            <input type="hidden" name="tweetID" value="<%= post._id %>">
-            <input type="hidden" name="authorID" value="<%= post.author %>">
+            <input type="hidden" name="tweetID" value="<%= everyone._id %>">
+            <input type="hidden" name="authorID" value="<%= everyone.author %>">
             <input type="hidden" name="page" value="<%= "feed" %>">
             <button type="submit" name="button" class="delete-button">
               <i class="far fa-trash-alt f-del"></i>
             </button>
           </form>
-        <% } %>
+          <% } %>
 
-        <% if(post.likes.includes(user._id)){ // if faved %>
+          <% if(everyone.likes.includes(currentUser._id)){ // if faved %>
           <form class="" action="/unfav" method="post" style="display: inline-block">
-            <input type="hidden" name="tweetID" value="<%= post._id %>">
-            <input type="hidden" name="userID" value="<%= user._id %>">
+            <input type="hidden" name="tweetID" value="<%= everyone._id %>">
+            <input type="hidden" name="userID" value="<%= currentUser._id %>">
             <input type="hidden" name="page" value="<%= "feed" %>">
             <button type="submit" name="button" class="delete-button">
               <i class="fas fa-star f-faved"></i>
             </button>
           </form>
-        <% } else { // if unfaved %>
+          <% } else { // if unfaved %>
           <form class="" action="/fav" method="post" style="display: inline-block">
 
-            <input type="hidden" name="tweetID" value="<%= post._id %>">
-            <input type="hidden" name="userID" value="<%= user._id %>">
+            <input type="hidden" name="tweetID" value="<%= everyone._id %>">
+            <input type="hidden" name="userID" value="<%= currentUser._id %>">
             <button type="submit" name="button" class="delete-button">
               <i class="far fa-star f-unfaved"></i>
             </button>
           </form>
-        <% } %>
-        <% if ( post.likes.length > 0 ) { %>
-          <span><%= post.likes.length %></span>
-        <% } %>
+          <% } %>
+          <% if ( everyone.likes.length > 0 ) { %>
+          <span><%= everyone.likes.length %></span>
+          <% } %>
 
+        </div>
+        <hr class="f-tweet-hr">
       </div>
-      <hr class="f-tweet-hr">
-    </div>
-    <%});%>
-    <%}%>
+      <%});%>
+      <%}%>
 
   </div>
 </div>
@@ -151,25 +155,19 @@
       </div>
       <hr class="f-green-hr">
       <div>
-        <img class="f-pp" src="images/<%= user.image %>" alt="">
-      <p class="f-gUsername" style="display: inline-block;"> <%= user.nick %> </p>
+        <img class="f-pp" src="images/<%= currentUser.image %>" alt="">
+      <p class="f-gUsername" style="display: inline-block;"> <%= currentUser.nick %> </p>
     </div>
   </div><br>
 
-  
+
   <div>
     <b>Currently</b>
     <hr class="f-green-hr">
-    <a class="l-green-id" href="/user/<%= user.user %>">@<%= user.user %> </a>
-    <!--
-    <% //if (user.updates.length !== 0) { %>
-      <p class="l-green-last-tweet" style="display: inline-block;"> <%= //user.updates[user.updates.length-1].text %> </p>
-    <% //} else { %>
-      <p class="l-green-last-tweet" style="display: inline-block;"> Not updated yet. </p>
-    <% //} %>
-    -->
+    <a class="l-green-id" href="/user/<%= currentUser.user %>">@<%= currentUser.user %> </a>
+    <p class="l-green-last-tweet" style="display: inline-block;"> <%= lastTweet.text %> </p>
   </div><br>
-  
+
 
   <div class="f-green-sec">
     <div class="d-flex justify-content-between">
@@ -188,26 +186,26 @@
     <hr class="f-green-hr">
     <div class="d-flex justify-content-between">
       <a href="#">Following</a>
-      <span> <%= user.following.length %> </span>
+      <span> <%= currentUser.following.length %> </span>
     </div>
     <div class="d-flex justify-content-between">
       <a href="#">Followers</a>
-      <span> <%= user.followers.length %> </span>
+      <span> <%= currentUser.followers.length %> </span>
     </div>
     <div class="d-flex justify-content-between">
       <a href="#">Favorites</a>
-      <span> <%= user.favorites.length %> </span>
+      <span> <%= currentUser.favorites.length %> </span>
     </div>
     <div class="d-flex justify-content-between">
       <a href="#">Updates</a>
-      <span> <%= user.updates.length %> </span>
+      <span> <%= currentUser.updates.length %> </span>
     </div>
   </div><br>
 
   <div class="f-green-sec">
     <b>Following</b>
     <hr class="f-green-hr">
-    <img src="images\egg.png" alt="" class="f-small-pp">
+    <img src="images\5.png" alt="" class="f-small-pp">
   </div>
 
 </div>

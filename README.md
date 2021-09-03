@@ -33,7 +33,7 @@ Start the server
   node server.js
 ```
 
-  
+
 ## Features
 
 - Home/Login page
@@ -52,16 +52,17 @@ Start the server
 - Delete icon and deleting your own tweets
 - Following & unfollowing system
 - Logging out
-
-  
-## Roadmap
-
 - Searching for tweets and users
 - List page for search results and lists of followers, followings, liked tweets etc.
+
+
+## Roadmap
+
+- List page for followings and followers
 - Changing profile name & bio ( canceled )
 - Layout improvements
 
-  
+
 ## Lessons Learned
 
 While building this project, I learned how important it is for the pages to be responsive.
@@ -69,7 +70,7 @@ I learned how high the probability of the user to encounter any errors and how c
 It was hard, challenging for me to construct database system (it was my first time); but i have managed to overcome it with great effort.
 I was unexperienced in techs like EJS, Express and Databases but it became was a great experience for me about theese and other techs.
 
-  
+
 ## Screenshots
 
 - Main Page
@@ -84,7 +85,7 @@ I was unexperienced in techs like EJS, Express and Databases but it became was a
 - Feed Page
 <img src="readme_images\4.png" alt="screenshot-4">
 
-  
+
 ## Feedback
 
 If you have any feedback, please reach out to me at coskntkk@gmail.com
