@@ -54,12 +54,12 @@ Start the server
 - Logging out
 - Searching for tweets and users
 - List page for search results and lists of followers, followings, liked tweets etc.
+- List page for followings and followers
 
 
 ## Roadmap
 
-- List page for followings and followers
-- Changing profile name & bio ( canceled )
+- ~~Changing profile name & bio~~ ( canceled )
 - Layout improvements
 
 

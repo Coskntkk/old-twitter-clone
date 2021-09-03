@@ -68,10 +68,11 @@ p {
   border-bottom: 15px solid white;
 }
 
-.delete-button {
+.hidden-button {
   border: 0;
   background-color: transparent;
   margin: 0;
+  padding: 0;
 }
 
 /* # Footer # */
@@ -96,4 +97,8 @@ p {
   color: white;
   background-color: darkgray;
   margin-top: 10px;
+}
+
+.stats-link {
+  color: blue;
 }

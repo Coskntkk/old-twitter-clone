@@ -43,6 +43,8 @@ const userSchema = {
   followers: [String], // List of follower accounts
   updates: [String], // List of tweet id's
   favorites: [String], // List of liked tweets's ids
+  lastTweet: String, // Text of last update
+  followingImages: [String], // List of following accounts profile images
 }
 const Tweet = mongoose.model("Tweet", tweetSchema);
 const User = mongoose.model("User", userSchema);
@@ -143,13 +145,22 @@ app.get("/feed", function(req, res) {
               everyones = posts;
             }
 
-            // Feed page with needed values
-            res.render("feed", {
-              currentUser: currentUser,
-              recents: recents,
-              everyones: everyones,
-              lastTweet: lastTweet,
-            });
+            let followedOnes = [...currentUser.following];
+            User.find({_id: { $in: followedOnes}}, function(err, foundPeople){
+              let imagelist = [];
+              foundPeople.forEach(function(foundPerson){
+                imagelist.push(foundPerson.image);
+              });
+
+              // Feed page with needed values
+              res.render("feed", {
+                currentUser: currentUser,
+                recents: recents,
+                everyones: everyones,
+                lastTweet: lastTweet,
+                images: imagelist,
+              });
+            })
           });
         });
       });
@@ -232,6 +243,8 @@ app.post("/register", function(req, res) {
     following: [],
     followers: [],
     updates: [],
+    lastTweet: "Not updated yet",
+    followingImages: []
   });
 
   newUser.save(function(err) {
@@ -306,6 +319,8 @@ app.post("/tweet", function(req, res) {
       });
     };
   });
+
+  User.updateOne({_id: userID}, { $set: { lastTweet: tweet}}, function(err, user){});
 
   res.redirect("feed");
 });
@@ -457,6 +472,12 @@ app.post("/follow", function(req, res) {
     if (!err) {}
   });
 
+  // Adds followed person's image link to follower's follows list
+  User.findOne({_id: accountID}, function(err, foundPerson){
+    let img = foundPerson.image;
+    User.updateOne({_id: followerID}, { $push: { followingImages: img}}, function(err){});
+  });
+
   res.redirect("back");
 });
 
@@ -494,19 +515,31 @@ app.post("/unfollow", function(req, res) {
   res.redirect("back");
 });
 
-app.post("/search", function(req, res){
+app.post("/search", function(req, res) {
   const searchWord = req.body.searchWord.toLowerCase();
 
   let tweets;
   let users;
 
-  User.findOne({ _id: currentUser._id}, function(err, foundUser) {
+  User.findOne({
+    _id: currentUser._id
+  }, function(err, foundUser) {
     currentUser = foundUser;
 
-    User.find({ user: { $regex: searchWord.toLowerCase(), $options: "i" }}, function(err, foundUsers) {
+    User.find({
+      user: {
+        $regex: searchWord.toLowerCase(),
+        $options: "i"
+      }
+    }, function(err, foundUsers) {
       users = foundUsers;
 
-      Tweet.find({ text: { $regex: searchWord.toLowerCase(), $options: "i" }}, function(err, foundTweets) {
+      Tweet.find({
+        text: {
+          $regex: searchWord.toLowerCase(),
+          $options: "i"
+        }
+      }, function(err, foundTweets) {
         tweets = foundTweets;
 
         res.render("list", {
@@ -520,15 +553,109 @@ app.post("/search", function(req, res){
 
   //res.redirect("back");
 });
-/*
-app.post("/follows", function(req, res) {
 
+// Post to list someone's followers
+app.post("/followings", function(req, res) {
+  let userID = req.body.userID;
+
+  User.findOne({
+    _id: userID
+  }, function(err, foundUser) {
+
+    if (err || !foundUser) {
+      res.redirect("error")
+    } else {
+
+      userFollows = [...foundUser.following];
+
+      User.find({
+        _id: {
+          $in: userFollows
+        }
+      }, function(err, foundUsers) {
+        if (!err && foundUsers.length > 0) {
+
+          users = foundUsers;
+
+          res.render("list", {
+            currentUser: currentUser,
+            tweets: [],
+            users: users,
+          });
+        }
+      });
+    }
+  });
 });
 
+// Post to list someone's followers
 app.post("/followers", function(req, res) {
+  let userID = req.body.userID;
 
+  User.findOne({
+    _id: userID
+  }, function(err, foundUser) {
+
+    if (err || !foundUser) {
+      res.redirect("error")
+    } else {
+
+      userFollows = [...foundUser.followers];
+
+      User.find({
+        _id: {
+          $in: userFollows
+        }
+      }, function(err, foundUsers) {
+        if (!err && foundUsers.length > 0) {
+
+          users = foundUsers;
+
+          res.render("list", {
+            currentUser: currentUser,
+            tweets: [],
+            users: users,
+          });
+        }
+      });
+    }
+  });
 });
-*/
+
+// Post to list someone's favorites
+app.post("/favorites", function(req, res) {
+  let userID = req.body.userID;
+
+  User.findOne({
+    _id: userID
+  }, function(err, foundUser) {
+
+    if (err || !foundUser) {
+      res.redirect("error")
+    } else {
+
+      userFavorites = [...foundUser.favorites];
+
+      Tweet.find({
+        _id: {
+          $in: userFavorites
+        }
+      }, function(err, foundTweets) {
+        if (!err && foundTweets.length > 0) {
+
+          tweets = foundTweets;
+
+          res.render("list", {
+            currentUser: currentUser,
+            tweets: tweets,
+            users: [],
+          });
+        }
+      });
+    }
+  });
+});
+
 
 
 

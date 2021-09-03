@@ -38,7 +38,7 @@
       <input type="hidden" name="tweetID" value="<%= tweets[tweets.length-1]._id %>">
       <input type="hidden" name="authorID" value="<%= tweets[tweets.length-1].author %>">
       <input type="hidden" name="page" value="<%= "profile" %>">
-      <button type="submit" name="button" class="delete-button">
+      <button type="submit" name="button" class="hidden-button">
         <i class="far fa-trash-alt f-del"></i>
       </button>
     </form>
@@ -49,7 +49,7 @@
       <input type="hidden" name="tweetID" value="<%= tweets[tweets.length-1]._id %>">
       <input type="hidden" name="userID" value="<%= currentUser._id %>">
       <input type="hidden" name="page" value="<%= "feed" %>">
-      <button type="submit" name="button" class="delete-button">
+      <button type="submit" name="button" class="hidden-button">
         <i class="fas fa-star f-faved"></i>
       </button>
     </form>
@@ -57,7 +57,7 @@
     <form class="" action="/fav" method="post" style="display: inline-block">
       <input type="hidden" name="tweetID" value="<%= tweets[tweets.length-1]._id %>">
       <input type="hidden" name="userID" value="<%= currentUser._id %>">
-      <button type="submit" name="button" class="delete-button">
+      <button type="submit" name="button" class="hidden-button">
         <i class="far fa-star f-unfaved"></i>
       </button>
     </form>
@@ -92,7 +92,7 @@
             <input type="hidden" name="tweetID" value="<%= tweets[i]._id %>">
             <input type="hidden" name="authorID" value="<%= tweets[i].author %>">
             <input type="hidden" name="page" value="<%= "profile" %>">
-            <button type="submit" name="button" class="delete-button">
+            <button type="submit" name="button" class="hidden-button">
               <i class="far fa-trash-alt f-del"></i>
             </button>
           </form>
@@ -103,7 +103,7 @@
             <input type="hidden" name="tweetID" value="<%= tweets[i]._id %>">
             <input type="hidden" name="userID" value="<%= currentUser._id %>">
             <input type="hidden" name="page" value="<%= "feed" %>">
-            <button type="submit" name="button" class="delete-button">
+            <button type="submit" name="button" class="hidden-button">
               <i class="fas fa-star f-faved"></i>
             </button>
           </form>
@@ -111,7 +111,7 @@
           <form class="" action="/fav" method="post" style="display: inline-block">
             <input type="hidden" name="tweetID" value="<%= tweets[i]._id %>">
             <input type="hidden" name="userID" value="<%= currentUser._id %>">
-            <button type="submit" name="button" class="delete-button">
+            <button type="submit" name="button" class="hidden-button">
               <i class="far fa-star f-unfaved"></i>
             </button>
           </form>
@@ -147,19 +147,28 @@
       <b>Stats</b>
       <hr class="f-green-hr">
       <div class="d-flex justify-content-between">
-        <a href="#">Following</a>
+        <form class="" action="/followings" method="post">
+          <input type="hidden" name="userID" value="<%= user._id %>">
+          <button class="hidden-button" type="submit" name="button"><span class="stats-link" href="">Following</span></button>
+        </form>
         <span> <%= user.following.length %> </span>
       </div>
       <div class="d-flex justify-content-between">
-        <a href="#">Followers</a>
+        <form class="" action="/followers" method="post">
+          <input type="hidden" name="userID" value="<%= user._id %>">
+          <button class="hidden-button" type="submit" name="button"><span class="stats-link" href="">Followers</span></button>
+        </form>
         <span> <%= user.followers.length %> </span>
       </div>
       <div class="d-flex justify-content-between">
-        <a href="#">Favorites</a>
+        <form class="" action="/favorites" method="post">
+          <input type="hidden" name="userID" value="<%= user._id %>">
+          <button class="hidden-button" type="submit" name="button"><span class="stats-link" href="">Favorites</span></button>
+        </form>
         <span> <%= user.favorites.length %> </span>
       </div>
       <div class="d-flex justify-content-between">
-        <a href="#">Updates</a>
+        <a class="stats-link" href="/user/<%= user.user %>">Updates</a>
         <span> <%= user.updates.length %> </span>
       </div>
     </div><br>

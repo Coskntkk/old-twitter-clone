@@ -32,7 +32,7 @@
       </div>
       <%});%>
       <%} else { %>
-        <h3 class="s-no-found">No users found.</h3>
+      <h3 class="s-no-found">No users found.</h3>
       <%}%>
 
   </div>
@@ -56,7 +56,7 @@
             <input type="hidden" name="tweetID" value="<%= tweet._id %>">
             <input type="hidden" name="authorID" value="<%= tweet.author %>">
             <input type="hidden" name="page" value="<%= "feed" %>">
-            <button type="submit" name="button" class="delete-button">
+            <button type="submit" name="button" class="hidden-button">
               <i class="far fa-trash-alt f-del"></i>
             </button>
           </form>
@@ -67,7 +67,7 @@
             <input type="hidden" name="tweetID" value="<%= tweet._id %>">
             <input type="hidden" name="userID" value="<%= currentUser._id %>">
             <input type="hidden" name="page" value="<%= "feed" %>">
-            <button type="submit" name="button" class="delete-button">
+            <button type="submit" name="button" class="hidden-button">
               <i class="fas fa-star f-faved"></i>
             </button>
           </form>
@@ -76,7 +76,7 @@
 
             <input type="hidden" name="tweetID" value="<%= tweet._id %>">
             <input type="hidden" name="userID" value="<%= currentUser._id %>">
-            <button type="submit" name="button" class="delete-button">
+            <button type="submit" name="button" class="hidden-button">
               <i class="far fa-star f-unfaved"></i>
             </button>
           </form>
@@ -88,73 +88,18 @@
         </div>
         <hr class="f-tweet-hr">
       </div>
-      <%})%>
+      <%});%>
 
       <%} else if(tweets.length == 0){%>
       <h3 class="s-no-found"> No updates found. </h3>
-      <%}%>
+      <%};%>
 
 
   </div>
 </div>
 
 </div>
-<div class="col-lg-4 f-green-big">
 
-  <div class="f-green" style="text-align:left">
+<%- include('partials/sidebar'); %>
 
-    <div class="f-green-sec">
-      <div class="d-flex justify-content-between">
-        <b>Hi,</b>
-        <a href="/profile">your profile</a>
-      </div>
-      <hr class="f-green-hr">
-      <div>
-        <img class="f-pp" src="images/<%= currentUser.image %>" alt="">
-      <p class="f-gUsername" style="display: inline-block;"> <%= currentUser.nick %> </p>
-    </div>
-  </div><br>
-
-  <div class="f-green-sec">
-    <div class="d-flex justify-content-between">
-      <b>Device updates</b>
-      <a href="#">add device</a>
-    </div>
-    <hr class="f-green-hr">
-    <div>
-      <input type="radio" name="" value=""><span> phone</span> <br>
-      <input type="radio" name="" value=""><span> web only</span>
-    </div>
-  </div><br>
-
-  <div class="f-green-sec">
-    <b>Stats</b>
-    <hr class="f-green-hr">
-    <div class="d-flex justify-content-between">
-      <a href="#">Following</a>
-      <span> <%= currentUser.following.length %> </span>
-    </div>
-    <div class="d-flex justify-content-between">
-      <a href="#">Followers</a>
-      <span> <%= currentUser.followers.length %> </span>
-    </div>
-    <div class="d-flex justify-content-between">
-      <a href="#">Favorites</a>
-      <span> <%= currentUser.favorites.length %> </span>
-    </div>
-    <div class="d-flex justify-content-between">
-      <a href="#">Updates</a>
-      <span> <%= currentUser.updates.length %> </span>
-    </div>
-  </div><br>
-
-  <div class="f-green-sec">
-    <b>Following</b>
-    <hr class="f-green-hr">
-    <img src="images\egg.png" alt="" class="f-small-pp">
-  </div>
-
-</div>
-</div>
-
-<%- include('partials/footer'); -%>
+<%- include('partials/footer'); %>
