@@ -1,0 +1,180 @@
+<%- include('partials/header'); -%>
+
+<div class="col-lg-8 p-main" style="background-color: white; text-align: center;">
+
+  <div class="container-fluid p-last-tweet-box">
+
+    <!-- //////// IF THERE IS A PARENT TWEET //////// -->
+    <%if(parent){%>
+    <div class="container-fluid f-tweet-box">
+
+      <div class="col-9 f-tweet-content">
+
+        <a href="/user/<%= parent.tweeter %>" class="f-tweet-author"><b> <%= parent.tweeter %></b></a>
+        <span class="f-tweet-text"> <%= parent.text %> </span>
+        <span class="f-tweet-date"> <%= parent.date %> </span>
+
+        <% if(parent.author == currentUser._id){ // if user's tweet %>
+        <form class="" action="/delete" method="post" style="display: inline-block">
+          <input type="hidden" name="tweetID" value="<%= parent._id %>">
+          <input type="hidden" name="authorID" value="<%= parent.author %>">
+          <button type="submit" name="button" class="hidden-button">
+            <i class="far fa-trash-alt f-del"></i>
+          </button>
+        </form>
+        <% } %>
+
+        <a href="/tweet/<%=parent._id%>"><i class="fas fa-reply f-reply"></i></a>
+
+        <% if(parent.likes.includes(currentUser._id)){ // if faved %>
+        <form class="" action="/unfav" method="post" style="display: inline-block">
+          <input type="hidden" name="tweetID" value="<%= parent._id %>">
+          <input type="hidden" name="userID" value="<%= currentUser._id %>">
+          <button type="submit" name="button" class="hidden-button">
+            <i class="fas fa-star f-faved"></i>
+          </button>
+        </form>
+        <% } else { // if unfaved %>
+        <form class="" action="/fav" method="post" style="display: inline-block">
+          <input type="hidden" name="tweetID" value="<%= parent._id %>">
+          <input type="hidden" name="userID" value="<%= currentUser._id %>">
+          <button type="submit" name="button" class="hidden-button">
+            <i class="far fa-star f-unfaved"></i>
+          </button>
+        </form>
+        <% } %>
+        <% if ( parent.likes.length > 0 ) { %>
+        <span><%= parent.likes.length %></span>
+        <% } %>
+
+      </div>
+      <hr class="f-tweet-hr">
+    </div>
+    <%};%>
+
+    <!-- //////// THE TWEET //////// -->
+    <div class="container-fluid f-tweet-box">
+      <img class="f-tweet-pp" src="/images/<%= tweet.img %>" alt="">
+
+      <div class="col-9 f-tweet-content">
+
+        <a href="/user/<%= tweet.tweeter %>" class="f-tweet-author"><b> <%= tweet.tweeter %></b></a>
+        <span class="f-tweet-text"> <%= tweet.text %> </span>
+        <span class="f-tweet-date"> <%= tweet.date %> </span>
+
+        <% if(tweet.author == currentUser._id){ // if user's tweet %>
+        <form class="" action="/delete" method="post" style="display: inline-block">
+          <input type="hidden" name="tweetID" value="<%= tweet._id %>">
+          <input type="hidden" name="authorID" value="<%= tweet.author %>">
+          <button type="submit" name="button" class="hidden-button">
+            <i class="far fa-trash-alt f-del"></i>
+          </button>
+        </form>
+        <% } %>
+
+        <% if(tweet.likes.includes(currentUser._id)){ // if faved %>
+        <form class="" action="/unfav" method="post" style="display: inline-block">
+          <input type="hidden" name="tweetID" value="<%= tweet._id %>">
+          <input type="hidden" name="userID" value="<%= currentUser._id %>">
+          <button type="submit" name="button" class="hidden-button">
+            <i class="fas fa-star f-faved"></i>
+          </button>
+        </form>
+        <% } else { // if unfaved %>
+        <form class="" action="/fav" method="post" style="display: inline-block">
+          <input type="hidden" name="tweetID" value="<%= tweet._id %>">
+          <input type="hidden" name="userID" value="<%= currentUser._id %>">
+          <button type="submit" name="button" class="hidden-button">
+            <i class="far fa-star f-unfaved"></i>
+          </button>
+        </form>
+        <% } %>
+        <% if ( tweet.likes.length > 0 ) { %>
+        <span><%= tweet.likes.length %></span>
+        <% } %>
+
+      </div>
+      <hr class="f-tweet-hr">
+    </div>
+
+  </div>
+
+  <!-- REPLY SECTION -->
+  <div class="d-flex justify-content-between">
+    <h4 class="f-title">Reply this update</h4>
+    <h3 class="f-140">140</h3>
+  </div>
+  <form class="" action="/reply" method="post">
+    <input type="hidden" name="userID" value="<%=currentUser._id%>">
+    <input type="hidden" name="parentTweet" value="<%=tweet._id%>">
+    <textarea class="form-control" id="tweet" name="tweetText" rows="3" maxlength="140" style="resize: none;"></textarea>
+    <button type="submit" name="update" class="f-update">reply</button>
+    <hr class="f-tweet-hr">
+  </form>
+
+  <!-- CHILD TWEETS -->
+  <%if(children){%>
+  <%children.forEach(function(child){%>
+  <div class="container-fluid f-tweet-box">
+
+    <div class="col-9 f-tweet-content">
+
+      <a href="/user/<%= child.tweeter %>" class="f-tweet-author"><b> <%= child.tweeter %></b></a>
+      <span class="f-tweet-text"> <%= child.text %> </span>
+      <span class="f-tweet-date"> <%= child.date %> </span>
+
+      <% if(child.author == currentUser._id){ // if user's tweet %>
+      <form class="" action="/delete" method="post" style="display: inline-block">
+        <input type="hidden" name="tweetID" value="<%= child._id %>">
+        <input type="hidden" name="authorID" value="<%= child.author %>">
+        <button type="submit" name="button" class="hidden-button">
+          <i class="far fa-trash-alt f-del"></i>
+        </button>
+      </form>
+      <% } %>
+
+      <a href="/tweet/<%=child._id%>"><i class="fas fa-reply f-reply"></i></a>
+
+      <% if(child.likes.includes(currentUser._id)){ // if faved %>
+      <form class="" action="/unfav" method="post" style="display: inline-block">
+        <input type="hidden" name="tweetID" value="<%= child._id %>">
+        <input type="hidden" name="userID" value="<%= currentUser._id %>">
+        <button type="submit" name="button" class="hidden-button">
+          <i class="fas fa-star f-faved"></i>
+        </button>
+      </form>
+      <% } else { // if unfaved %>
+      <form class="" action="/fav" method="post" style="display: inline-block">
+        <input type="hidden" name="tweetID" value="<%= child._id %>">
+        <input type="hidden" name="userID" value="<%= currentUser._id %>">
+        <button type="submit" name="button" class="hidden-button">
+          <i class="far fa-star f-unfaved"></i>
+        </button>
+      </form>
+      <% } %>
+      <% if ( child.likes.length > 0 ) { %>
+      <span><%= child.likes.length %></span>
+      <% } %>
+
+
+    </div>
+    <hr class="f-tweet-hr">
+  </div>
+  <%});%>
+  <%}%>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<%- include('partials/sidebar'); %>
+
+<%- include('partials/footer'); %>

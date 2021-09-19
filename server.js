@@ -20,6 +20,7 @@ const tweetSchema = {
   likes: [String], // ID's of liked accounts
   date: String, // Date
   img: String, // Profile image of author
+  parent: String // ID of parent tweet if it is a reply
 }
 const userSchema = {
   user: {
@@ -225,6 +226,30 @@ app.get("/user/:user", function(req, res) {
   });
 });
 
+app.get("/tweet/:tweet", function(req, res){
+  let tweetID = req.params.tweet;
+
+  Tweet.findOne({ _id: tweetID}, function(err, foundTweet){
+    if(foundTweet.parent.length > 0){
+
+      Tweet.findOne({_id: foundTweet.parent}, function(err, foundParent){
+
+        Tweet.find({parent: tweetID}, function(err, foundChildren){
+          children = foundChildren;
+          res.render("tweet", {currentUser: currentUser, tweet:foundTweet, parent:foundParent, children:foundChildren});
+        });
+      });
+
+    } else {
+      Tweet.find({parent: tweetID}, function(err, foundChildren){
+        children = foundChildren;
+        res.render("tweet", {currentUser: currentUser, tweet:foundTweet, parent:null, children:foundChildren});
+      });
+    }
+  });
+
+});
+
 
 
 
@@ -307,6 +332,51 @@ app.post("/tweet", function(req, res) {
         date: date,
         img: found.image,
         tweeter: found.user,
+        parent: "",
+      });
+      let newID = newTweet._id;
+      newTweet.save();
+
+      User.findOne({
+        _id: userID
+      }, function(err, foundUser) {
+        foundUser.updates.push(newID);
+        foundUser.save();
+      });
+    };
+  });
+
+  User.updateOne({_id: userID}, { $set: { lastTweet: tweet}}, function(err, user){});
+
+  res.redirect("back");
+});
+
+// Post for replying a tweet
+app.post("/reply", function(req, res) {
+  const userID = req.body.userID;
+  const tweet = req.body.tweetText;
+  const parentID = req.body.parentTweet;
+  const rawdate = new Date();
+  const date = rawdate.toLocaleString("tr-TR", {
+    year: "2-digit",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit"
+  });
+
+  User.findOne({
+    _id: userID
+  }, function(err, found) {
+    if (!err) {
+      const newTweet = new Tweet({
+        author: userID,
+        text: tweet,
+        likes: [],
+        date: date,
+        img: found.image,
+        tweeter: found.user,
+        parent: parentID,
       });
       let newID = newTweet._id;
       newTweet.save();
@@ -330,7 +400,6 @@ app.post("/delete", function(req, res) {
   // This post method gets tweet and author ids
   let tweetID = req.body.tweetID;
   let authorID = req.body.authorID;
-  let page = req.body.page;
 
   // Delete from author's updates list
   User.updateOne({
@@ -368,13 +437,7 @@ app.post("/delete", function(req, res) {
   });
 
   // Redirects to the same page.
-  if (page === "feed") {
-    res.redirect("feed");
-  } else if (page === "profile") {
-    res.redirect("profile");
-  } else {
-    res.redirect("error");
-  }
+  res.redirect("back");
 });
 
 // Post for favoriting a tweet

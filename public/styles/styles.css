@@ -102,3 +102,7 @@ p {
 .stats-link {
   color: blue;
 }
+
+.t-reply {
+  display: inline-block;
+}

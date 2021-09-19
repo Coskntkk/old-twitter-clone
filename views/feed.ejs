@@ -2,14 +2,14 @@
 
 <div class="col-lg-8 f-feed" style="background-color: white; text-align: center;">
   <div class="d-flex justify-content-between">
-    <h3>What are you doing?</h3>
-    <h2 class="140">140</h2>
+    <h3 class="f-title">What are you doing?</h3>
+    <h2 class="f-140">140</h2>
   </div>
 
   <form class="" action="/tweet" method="post">
     <input type="hidden" name="userID" value="<%=currentUser._id%>">
     <textarea class="form-control" id="tweet" name="tweetText" rows="3" maxlength="140" style="resize: none;"></textarea>
-    <button type="submit" name="update">update</button>
+    <button type="submit" name="update" class="f-update" >update</button>
   </form>
 
   <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -46,18 +46,18 @@
           <form class="" action="/delete" method="post" style="display: inline-block">
             <input type="hidden" name="tweetID" value="<%= recent._id %>">
             <input type="hidden" name="authorID" value="<%= recent.author %>">
-            <input type="hidden" name="page" value="<%= "feed" %>">
             <button type="submit" name="button" class="hidden-button">
               <i class="far fa-trash-alt f-del"></i>
             </button>
           </form>
           <% } %>
 
+          <a href="/tweet/<%=recent._id%>"><i class="fas fa-reply f-reply"></i></a>
+
           <% if(recent.likes.includes(currentUser._id)){ // if faved %>
           <form class="" action="/unfav" method="post" style="display: inline-block">
             <input type="hidden" name="tweetID" value="<%= recent._id %>">
             <input type="hidden" name="userID" value="<%= currentUser._id %>">
-            <input type="hidden" name="page" value="<%= "feed" %>">
             <button type="submit" name="button" class="hidden-button">
               <i class="fas fa-star f-faved"></i>
             </button>
@@ -104,25 +104,24 @@
           <form class="" action="/delete" method="post" style="display: inline-block">
             <input type="hidden" name="tweetID" value="<%= everyone._id %>">
             <input type="hidden" name="authorID" value="<%= everyone.author %>">
-            <input type="hidden" name="page" value="<%= "feed" %>">
             <button type="submit" name="button" class="hidden-button">
               <i class="far fa-trash-alt f-del"></i>
             </button>
           </form>
           <% } %>
 
+          <a href="/tweet/<%=everyone._id%>"><i class="fas fa-reply f-reply"></i></a>
+
           <% if(everyone.likes.includes(currentUser._id)){ // if faved %>
           <form class="" action="/unfav" method="post" style="display: inline-block">
             <input type="hidden" name="tweetID" value="<%= everyone._id %>">
             <input type="hidden" name="userID" value="<%= currentUser._id %>">
-            <input type="hidden" name="page" value="<%= "feed" %>">
             <button type="submit" name="button" class="hidden-button">
               <i class="fas fa-star f-faved"></i>
             </button>
           </form>
           <% } else { // if unfaved %>
           <form class="" action="/fav" method="post" style="display: inline-block">
-
             <input type="hidden" name="tweetID" value="<%= everyone._id %>">
             <input type="hidden" name="userID" value="<%= currentUser._id %>">
             <button type="submit" name="button" class="hidden-button">

@@ -1,3 +1,7 @@
+.f-title {
+  margin-top: 5px;
+}
+
 .f-green-big {
   padding: 0 0 0 2%;
 }
@@ -56,10 +60,22 @@
   margin: 5px 0;
 }
 
-.f-unfaved, .f-del {
+.f-unfaved, .f-del, .f-reply {
   color: darkgray;
 }
 
 .f-faved {
   color: orange;
+}
+
+.f-140 {
+  color: darkgray;
+}
+
+.f-update {
+  border-radius: 0;
+  border: solid 1px black;
+  color: white;
+  background-color: darkgray;
+  margin: 20px 0;
 }

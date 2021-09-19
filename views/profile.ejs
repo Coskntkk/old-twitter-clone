@@ -37,12 +37,13 @@
     <form class="" action="/delete" method="post" style="display: inline-block">
       <input type="hidden" name="tweetID" value="<%= tweets[tweets.length-1]._id %>">
       <input type="hidden" name="authorID" value="<%= tweets[tweets.length-1].author %>">
-      <input type="hidden" name="page" value="<%= "profile" %>">
       <button type="submit" name="button" class="hidden-button">
         <i class="far fa-trash-alt f-del"></i>
       </button>
     </form>
     <% } %>
+
+    <a href="/tweet/<%=tweets[tweets.length-1]._id%>"><i class="fas fa-reply f-reply"></i></a>
 
     <% if(tweets[tweets.length-1].likes.includes(currentUser._id)){ // if faved %>
     <form class="" action="/unfav" method="post" style="display: inline-block">
@@ -91,12 +92,13 @@
           <form class="" action="/delete" method="post" style="display: inline-block">
             <input type="hidden" name="tweetID" value="<%= tweets[i]._id %>">
             <input type="hidden" name="authorID" value="<%= tweets[i].author %>">
-            <input type="hidden" name="page" value="<%= "profile" %>">
             <button type="submit" name="button" class="hidden-button">
               <i class="far fa-trash-alt f-del"></i>
             </button>
           </form>
           <% } %>
+
+          <a href="/tweet/<%=tweets[i]._id%>"><i class="fas fa-reply f-reply"></i></a>
 
           <% if(tweets[i].likes.includes(currentUser._id)){ // if faved %>
           <form class="" action="/unfav" method="post" style="display: inline-block">

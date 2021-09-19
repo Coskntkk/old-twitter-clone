@@ -2,11 +2,15 @@
 # Old Twitter Clone
 
 Clone of Twitter from 2007-2008.
+
+
 ## Tech
 
 **Client:** HTML, CSS, Javascript, EJS, Bootstrap, jQuery
 
 **Server:** Node, Express, Mongoose, Bodyparser
+
+
 ## Run Locally
 
 Clone the project
@@ -34,6 +38,51 @@ Start the server
 ```
 
 
+## Database Structure
+
+- For users:
+```js
+var userSchema = {
+  user: {
+    type: String,
+    required: true,
+    unique: true
+  }, // Unique name of account
+  email: {
+    type: String,
+    required: true,
+    match: /.+\@.+\..+/,
+    unique: true
+  }, // Email
+  password: {
+    type: String,
+    required: true,
+  }, // Password
+  nick: String, // Display name
+  image: String, // Profile image url
+  following: [String], // List of following accounts
+  followers: [String], // List of follower accounts
+  updates: [String], // List of tweet id's
+  favorites: [String], // List of liked tweets's ids
+  lastTweet: String, // Text of last update
+  followingImages: [String], // List of following accounts profile images
+}
+```
+
+- For tweets:
+```js
+var tweetSchema = {
+  tweeter: String, // Display name of author
+  author: String, // ID of author
+  text: String, // Content of tweet
+  likes: [String], // ID's of liked accounts
+  date: String, // Date
+  img: String, // Profile image of author
+  parent: String // ID of parent tweet if it is a reply
+}
+```
+
+
 ## Features
 
 - Home/Login page
@@ -55,6 +104,9 @@ Start the server
 - Searching for tweets and users
 - List page for search results and lists of followers, followings, liked tweets etc.
 - List page for followings and followers
+- Replying function for all tweets
+- Tweet pages for viewing parent and child tweets
+- Route parameters for own pages of tweets
 
 
 ## Roadmap
