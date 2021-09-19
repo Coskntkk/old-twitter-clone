@@ -137,6 +137,9 @@ I was unexperienced in techs like EJS, Express and Databases but it became was a
 - Feed Page
 <img src="readme_images\4.png" alt="screenshot-4">
 
+- Tweet & Reply Page
+<img src="readme_images\5.png" alt="screenshot-4">
+
 
 ## Feedback
 
