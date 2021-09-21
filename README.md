@@ -112,6 +112,8 @@ var tweetSchema = {
 ## Roadmap
 
 - ~~Changing profile name & bio~~ ( canceled )
+- Reorganizing the API to make it RESTful
+- Login Authentication with Hash function
 - Layout improvements
 
 
