@@ -107,14 +107,12 @@ var tweetSchema = {
 - Replying function for all tweets
 - Tweet pages for viewing parent and child tweets
 - Route parameters for own pages of tweets
+- Layout improvements
 
 
 ## Roadmap
 
-- ~~Changing profile name & bio~~ ( canceled )
-- Reorganizing the API to make it RESTful
-- Login Authentication with Hash function
-- Layout improvements
+- Completed
 
 
 ## Lessons Learned
