@@ -63,11 +63,11 @@ Start the server
 - Route parameters for own pages of tweets
 - Flash messages
 - MVC Structure
+- Middlewares for authentication and redirect
 
 
 ## Roadmap
 
-- Middlewares for authentication and redirect
 - Register validation for username, email and password
 - Layout improvements
 
