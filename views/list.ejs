@@ -4,18 +4,17 @@
 
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
-      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#recent" type="button" role="tab" aria-controls="home" aria-selected="true">Users</button>
+      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home">Users</button>
     </li>
     <li class="nav-item" role="presentation">
-      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#everyone" type="button" role="tab" aria-controls="contact" aria-selected="false">Tweets</button>
+      <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile">Updates</button>
     </li>
   </ul>
 
   <div class="tab-content" id="myTabContent">
 
     <!-- Users tab for search results -->
-    <div class="tab-pane fade show active" id="recent" role="tabpanel" aria-labelledby="recent-tab">
-
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
       <%if(users.length > 0){%>
       <%users.slice().reverse().forEach(function(user){%>
       <div class="container-fluid s-user-box">
@@ -23,7 +22,7 @@
         <div class="p-last-tweet-top">
           <img class="f-tweet-pp" src="/images/<%= user.image %>" alt="">
           <div class="s-user">
-            <a href="/user/<%= user.user %>" class="s-user-name"><b> @<%= user.user %></b></a>
+            <a href="/users/<%= user.user %>" class="s-user-name"><b> @<%= user.user %></b></a>
             <span href="" class="s-nick-name"><b> <%= user.nick %></b></span>
           </div>
         </div>
@@ -34,69 +33,52 @@
       <%} else { %>
       <h3 class="s-no-found">No users found.</h3>
       <%}%>
+    </div>
 
-  </div>
-
-  <!-- Tweets tab for search results -->
-  <div class="tab-pane fade" id="everyone" role="tabpanel" aria-labelledby="everyone-tab">
-
-    <%if(tweets.length > 0){%>
-      <%tweets.slice().reverse().forEach(function(tweet){%>
-      <div class="container-fluid f-tweet-box">
-        <img class="f-tweet-pp" src="/images/<%= tweet.img %>" alt="">
-
-        <div class="col-9 f-tweet-content">
-
-          <a href="/user/<%= tweet.tweeter %>" class="f-tweet-author"><b> <%= tweet.tweeter %></b></a>
-          <span class="f-tweet-text"> <%= tweet.text %> </span>
-          <span class="f-tweet-date"> <%= tweet.date %> </span>
-
-          <% if(tweet.author == currentUser._id){ // if user's tweet %>
-          <form class="" action="/delete" method="post" style="display: inline-block">
-            <input type="hidden" name="tweetID" value="<%= tweet._id %>">
-            <input type="hidden" name="authorID" value="<%= tweet.author %>">
-            <input type="hidden" name="page" value="<%= "feed" %>">
-            <button type="submit" name="button" class="hidden-button">
-              <i class="far fa-trash-alt f-del"></i>
-            </button>
-          </form>
-          <% } %>
-
-          <% if(tweet.likes.includes(currentUser._id)){ // if faved %>
-          <form class="" action="/unfav" method="post" style="display: inline-block">
-            <input type="hidden" name="tweetID" value="<%= tweet._id %>">
-            <input type="hidden" name="userID" value="<%= currentUser._id %>">
-            <input type="hidden" name="page" value="<%= "feed" %>">
-            <button type="submit" name="button" class="hidden-button">
-              <i class="fas fa-star f-faved"></i>
-            </button>
-          </form>
-          <% } else { // if unfaved %>
-          <form class="" action="/fav" method="post" style="display: inline-block">
-
-            <input type="hidden" name="tweetID" value="<%= tweet._id %>">
-            <input type="hidden" name="userID" value="<%= currentUser._id %>">
-            <button type="submit" name="button" class="hidden-button">
-              <i class="far fa-star f-unfaved"></i>
-            </button>
-          </form>
-          <% } %>
-          <% if ( tweet.likes.length > 0 ) { %>
-          <span><%= tweet.likes.length %></span>
-          <% } %>
-
-        </div>
-        <hr class="f-tweet-hr">
-      </div>
-      <%});%>
-
+    <!-- Tweets tab for search results -->
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      <%if(tweets.length > 0){%>
+        <%tweets.slice().reverse().forEach(function(tweet){%>
+          <div class="container-fluid f-tweet-box">
+            <img class="f-tweet-pp" src="/images/<%= tweet.img %>" alt="">
+            <div class="col-9 f-tweet-content">
+              <a href="/users/<%= tweets.tweeter %>" class="f-tweet-author"><b> <%= tweet.tweeter %></b></a>
+              <span class="f-tweet-text"> <%= tweet.tweet %> </span>
+              <span class="f-tweet-date"> <%= tweet.date.toLocaleString() %> </span>
+              <% if(tweet.tweeter === user.user){ %>
+                <form class="" action="/tweets/<%= tweet._id %>/delete" method="get" style="display: inline-block">
+                  <button type="submit" name="button" class="hidden-button">
+                    <i class="far fa-trash-alt f-del"></i>
+                  </button>
+                </form>
+              <% } %>
+              <a href="/tweets/<%=tweet._id%>"><i class="fas fa-reply f-reply"></i></a>
+              <% if(tweet.likes.includes(user._id)){ // if faved %>
+                <form class="" action="/tweets/<%= tweet._id %>/unfav" method="get" style="display: inline-block">
+                  <button type="submit" name="button" class="hidden-button">
+                    <i class="fas fa-star f-faved"></i>
+                  </button>
+                </form>
+              <% } else { // if unfaved %>
+                <form class="" action="/tweets/<%= tweet._id %>/fav" method="get" style="display: inline-block">
+                  <button type="submit" name="button" class="hidden-button">
+                    <i class="far fa-star f-unfaved"></i>
+                  </button>
+                </form>
+              <% } %>
+              <% if ( tweet.likes.length > 0 ) { %>
+                <span><%= tweet.likes.length %></span>
+              <% } %>
+            </div>
+            <hr class="f-tweet-hr">
+          </div>
+        <%});%>
       <%} else if(tweets.length == 0){%>
       <h3 class="s-no-found"> No updates found. </h3>
       <%};%>
-
+    </div>
 
   </div>
-</div>
 
 </div>
 

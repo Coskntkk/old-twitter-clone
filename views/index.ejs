@@ -26,9 +26,7 @@
 
     </div>
     <div class="l-login-bot">
-      <form class="" action="/" method="post">
-        <button type="button" class="btn btn-success l-get-start">Get Started--Join!</button>
-      </form>
+      <button type="button" href="/register" class="btn btn-success l-get-start">Get Started--Join!</button>
     </div>
 
   </div>
@@ -38,15 +36,17 @@
 
     <h4>Please sign in</h4>
 
-    <form class="" action="/login" method="post">
+    <%- include('partials/flash'); -%>
+
+    <form class="" action="/users/login" method="post">
       <div class="mb-3">
-        <label for="loginName" class="form-label l-formLabel">user name:</label>
-        <textarea class="form-control l-formControl" id="userName" name="loginName" rows="1" style="resize: none"></textarea>
+        <label for="email" class="form-label l-formLabel">user email:</label>
+        <input type="email" class="form-control l-formControl" id="userName" name="email" rows="1" style="resize: none"></input>
       </div>
 
       <div class="mb-3">
         <label for="loginPassword" class="form-label l-formLabel">password:</label>
-        <textarea class="form-control l-formControl" id="userPassword" name="loginPassword" rows="1" style="resize: none; -webkit-text-security:disc"></textarea>
+        <textarea class="form-control l-formControl" id="userPassword" name="password" rows="1" style="resize: none; -webkit-text-security:disc"></textarea>
       </div>
 
       <input type="checkbox" id="rememberMe" name="loginRemember"> <span>Remember Me</span>

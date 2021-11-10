@@ -9,8 +9,8 @@
       </div>
       <hr class="f-green-hr">
       <div>
-        <img class="f-pp" src="images/<%= currentUser.image %>" alt="">
-        <p class="f-gUsername" style="display: inline-block;"> <%= currentUser.nick %> </p>
+        <img class="f-pp" src="/images/<%= user.image %>" alt="">
+        <p class="f-gUsername" style="display: inline-block;"> <%= user.nick %> </p>
       </div>
     </div><br>
 
@@ -18,8 +18,8 @@
     <div>
       <b>Currently</b>
       <hr class="f-green-hr">
-      <a class="l-green-id" href="/user/<%= currentUser.user %>">@<%= currentUser.user %> </a>
-      <p class="l-green-last-tweet" style="display: inline-block;"> <%= currentUser.lastTweet %> </p>
+      <a class="l-green-id" href="/users/<%= user.user %>">@<%= user.user %> </a>
+      <p class="l-green-last-tweet" style="display: inline-block;"> <%= user.lastTweet %> </p>
     </div><br>
 
 
@@ -39,29 +39,20 @@
       <b>Stats</b>
       <hr class="f-green-hr">
       <div class="d-flex justify-content-between">
-        <form class="" action="/followings" method="post">
-          <input type="hidden" name="userID" value="<%= currentUser._id %>">
-          <button class="hidden-button" type="submit" name="button"><span class="stats-link" href="">Following</span></button>
-        </form>
-        <span> <%= currentUser.following.length %> </span>
+        <a class="stats-link" href="/users/<%= user.user %>/followings">Following</a>
+        <span> <%= user.following.length %> </span>
       </div>
       <div class="d-flex justify-content-between">
-        <form class="" action="/followers" method="post">
-          <input type="hidden" name="userID" value="<%= currentUser._id %>">
-          <button class="hidden-button" type="submit" name="button"><span class="stats-link" href="">Followers</span></button>
-        </form>
-        <span> <%= currentUser.followers.length %> </span>
+        <a class="stats-link" href="/users/<%= user.user %>/followers">Followers</a>
+        <span> <%= user.followers.length %> </span>
       </div>
       <div class="d-flex justify-content-between">
-        <form class="" action="/favorites" method="post">
-          <input type="hidden" name="userID" value="<%= currentUser._id %>">
-          <button class="hidden-button" type="submit" name="button"><span class="stats-link" href="">Favorites</span></button>
-        </form>
-        <span> <%= currentUser.favorites.length %> </span>
+        <a class="stats-link" href="/users/<%= user.user %>/favorites">Favorites</a>
+        <span> <%= user.favorites.length %> </span>
       </div>
       <div class="d-flex justify-content-between">
-        <a class="stats-link" href="/user/<%= currentUser.user %>">Updates</a>
-        <span> <%= currentUser.updates.length %> </span>
+        <a class="stats-link" href="/users/<%= user.user %>/updates">Updates</a>
+        <span> <%= user.updates.length %> </span>
       </div>
     </div><br>
 
@@ -69,8 +60,8 @@
       <b>Following</b>
       <hr class="f-green-hr">
 
-      <% currentUser.followingImages.forEach(function(image){ %>
-        <img src="images\<%= image %>" alt="" class="f-small-pp">
+      <% user.followingImages.forEach(function(image){ %>
+        <img src="\images\<%= image %>" alt="" class="f-small-pp">
       <% }); %>
 
     </div>

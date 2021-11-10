@@ -2,6 +2,8 @@
 
 <div class="col-lg-8 p-main" style="background-color: white; text-align: center;">
 
+  <%- include('partials/flash'); -%>
+  
   <div class="container-fluid p-last-tweet-box">
 
     <!-- PROFILE PIC AND NAME -->
@@ -11,17 +13,13 @@
     </div>
 
     <!-- FOLLOW / UNFOLLOW BUTTON -->
-    <% if ( currentUser._id.toString() !== user._id.toString() ) { %>
-    <% if ( user.followers.includes(currentUser._id.toString()) ) { %>
-    <form class="" action="/unfollow" method="post">
-      <input type="hidden" name="followerID" value="<%= currentUser._id %>">
-      <input type="hidden" name="accountID" value="<%= user._id %>">
+    <% if ( sessionUser.user !== user.user ) { %>
+    <% if ( user.followers.includes(sessionUser._id) ) { %>
+    <form class="" action="/users/<%= user.user %>/unfollow" method="get">
       <button class="follow-button" type="submit" name="button">Unfollow</button>
     </form>
     <% } else { %>
-    <form class="" action="/follow" method="post">
-      <input type="hidden" name="followerID" value="<%= currentUser._id %>">
-      <input type="hidden" name="accountID" value="<%= user._id %>">
+    <form class="" action="/users/<%= user.user %>/follow" method="get">
       <button class="follow-button" type="submit" name="button">Follow</button>
     </form>
     <% } %>
@@ -29,40 +27,34 @@
 
     <!-- LAST TWEET -->
     <% if (tweets.length !==0) { %>
-    <p class="p-last-tweet-text p-p"> <%= (tweets.length !== 0) ? tweets[tweets.length-1].text : "Not updated yed." %> </p>
-    <p class="p-last-tweet-date p-p" style="display:inline-block"> <%= (tweets.length !== 0) ? tweets[tweets.length-1].date : "" %> </p>
+    <p class="p-last-tweet-text p-p"> <%= (tweets.length !== 0) ? tweets[tweets.length-1].tweet : "Not updated yed." %> </p>
+    <p class="p-last-tweet-date p-p" style="display:inline-block"> <%= (tweets.length !== 0) ? tweets[tweets.length-1].date.toLocaleString() : "" %> </p>
 
-    <% if (currentUser._id == tweets[0].author) { %>
+    <% if (sessionUser.user == tweets[0].tweeter) { %>
     <!-- TWEET DELETE BUTTON -->
-    <form class="" action="/delete" method="post" style="display: inline-block">
-      <input type="hidden" name="tweetID" value="<%= tweets[tweets.length-1]._id %>">
-      <input type="hidden" name="authorID" value="<%= tweets[tweets.length-1].author %>">
+    <form class="" action="/tweets/<%= tweets[tweets.length-1]._id %>/delete" method="get" style="display: inline-block">
       <button type="submit" name="button" class="hidden-button">
         <i class="far fa-trash-alt f-del"></i>
       </button>
     </form>
     <% } %>
 
-    <a href="/tweet/<%=tweets[tweets.length-1]._id%>"><i class="fas fa-reply f-reply"></i></a>
+    <a href="/tweets/<%=tweets[tweets.length-1]._id%>"><i class="fas fa-reply f-reply"></i></a>
 
-    <% if(tweets[tweets.length-1].likes.includes(currentUser._id)){ // if faved %>
-    <form class="" action="/unfav" method="post" style="display: inline-block">
-      <input type="hidden" name="tweetID" value="<%= tweets[tweets.length-1]._id %>">
-      <input type="hidden" name="userID" value="<%= currentUser._id %>">
-      <input type="hidden" name="page" value="<%= "feed" %>">
-      <button type="submit" name="button" class="hidden-button">
-        <i class="fas fa-star f-faved"></i>
-      </button>
-    </form>
-    <% } else { // if unfaved %>
-    <form class="" action="/fav" method="post" style="display: inline-block">
-      <input type="hidden" name="tweetID" value="<%= tweets[tweets.length-1]._id %>">
-      <input type="hidden" name="userID" value="<%= currentUser._id %>">
-      <button type="submit" name="button" class="hidden-button">
-        <i class="far fa-star f-unfaved"></i>
-      </button>
-    </form>
+    <% if(tweets[tweets.length-1].likes.includes(sessionUser._id)){ // if faved %>
+      <form class="" action="/tweets/<%= tweets[tweets.length-1]._id %>/unfav" method="get" style="display: inline-block">
+        <button type="submit" name="button" class="hidden-button">
+          <i class="fas fa-star f-faved"></i>
+        </button>
+      </form>
+      <% } else { // if unfaved %>
+      <form class="" action="/tweets/<%= tweets[tweets.length-1]._id %>/fav" method="get" style="display: inline-block">
+        <button type="submit" name="button" class="hidden-button">
+          <i class="far fa-star f-unfaved"></i>
+        </button>
+      </form>
     <% } %>
+
     <% if ( tweets[tweets.length-1].likes.length > 0 ) { %>
     <span><%= tweets[tweets.length-1].likes.length %></span>
     <% } %>
@@ -85,34 +77,27 @@
       <% for (let i=tweets.length-2; 0<=i; i--) { %>
       <div class="container-fluid f-tweet-box">
         <div class="f-tweet-content">
-          <span class="p-tweet-text"><%= tweets[i].text %> </span>
-          <span class="p-tweet-date"><%= tweets[i].date %> </span>
+          <span class="p-tweet-text"><%= tweets[i].tweet %> </span>
+          <span class="p-tweet-date"><%= tweets[i].date.toLocaleString() %> </span>
 
-          <% if (currentUser._id == tweets[i].author) { %>
-          <form class="" action="/delete" method="post" style="display: inline-block">
-            <input type="hidden" name="tweetID" value="<%= tweets[i]._id %>">
-            <input type="hidden" name="authorID" value="<%= tweets[i].author %>">
+          <% if (sessionUser.user == tweets[i].tweeter) { %>
+          <form class="" action="/tweets/<%= tweets[i]._id %>/delete" method="get" style="display: inline-block">
             <button type="submit" name="button" class="hidden-button">
               <i class="far fa-trash-alt f-del"></i>
             </button>
           </form>
           <% } %>
 
-          <a href="/tweet/<%=tweets[i]._id%>"><i class="fas fa-reply f-reply"></i></a>
+          <a href="/tweets/<%=tweets[i]._id%>"><i class="fas fa-reply f-reply"></i></a>
 
-          <% if(tweets[i].likes.includes(currentUser._id)){ // if faved %>
-          <form class="" action="/unfav" method="post" style="display: inline-block">
-            <input type="hidden" name="tweetID" value="<%= tweets[i]._id %>">
-            <input type="hidden" name="userID" value="<%= currentUser._id %>">
-            <input type="hidden" name="page" value="<%= "feed" %>">
+          <% if(tweets[i].likes.includes(sessionUser._id)){ // if faved %>
+          <form class="" action="/tweets/<%= tweets[i]._id %>/unfav" method="get" style="display: inline-block">
             <button type="submit" name="button" class="hidden-button">
               <i class="fas fa-star f-faved"></i>
             </button>
           </form>
           <% } else { // if unfaved %>
-          <form class="" action="/fav" method="post" style="display: inline-block">
-            <input type="hidden" name="tweetID" value="<%= tweets[i]._id %>">
-            <input type="hidden" name="userID" value="<%= currentUser._id %>">
+          <form class="" action="/tweets/<%= tweets[i]._id %>/fav" method="get" style="display: inline-block">
             <button type="submit" name="button" class="hidden-button">
               <i class="far fa-star f-unfaved"></i>
             </button>
@@ -125,6 +110,7 @@
         </div>
         <hr class="f-tweet-hr">
       </div>
+      
       <% } %>
       <% }; %>
 
@@ -149,28 +135,25 @@
       <b>Stats</b>
       <hr class="f-green-hr">
       <div class="d-flex justify-content-between">
-        <form class="" action="/followings" method="post">
-          <input type="hidden" name="userID" value="<%= user._id %>">
+        <form class="" action="/users/<%= user.user %>/followings" method="get">
           <button class="hidden-button" type="submit" name="button"><span class="stats-link" href="">Following</span></button>
         </form>
         <span> <%= user.following.length %> </span>
       </div>
       <div class="d-flex justify-content-between">
-        <form class="" action="/followers" method="post">
-          <input type="hidden" name="userID" value="<%= user._id %>">
+        <form class="" action="/users/<%= user.user %>/followers" method="get">
           <button class="hidden-button" type="submit" name="button"><span class="stats-link" href="">Followers</span></button>
         </form>
         <span> <%= user.followers.length %> </span>
       </div>
       <div class="d-flex justify-content-between">
-        <form class="" action="/favorites" method="post">
-          <input type="hidden" name="userID" value="<%= user._id %>">
+        <form class="" action="/users/<%= user.user %>/favorites" method="get">
           <button class="hidden-button" type="submit" name="button"><span class="stats-link" href="">Favorites</span></button>
         </form>
         <span> <%= user.favorites.length %> </span>
       </div>
       <div class="d-flex justify-content-between">
-        <a class="stats-link" href="/user/<%= user.user %>">Updates</a>
+        <a class="stats-link" href="/users/<%= user.user %>/updates">Updates</a>
         <span> <%= user.updates.length %> </span>
       </div>
     </div><br>
@@ -178,7 +161,7 @@
     <div class="f-green-sec">
       <b>Following</b>
       <hr class="f-green-hr">
-      <img src="images\egg.png" alt="" class="f-small-pp">
+      <img src="\images\egg.png" alt="" class="f-small-pp">
     </div>
 
   </div>

@@ -1,20 +1,25 @@
 {
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^4.6.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
+    "express-session": "^1.17.2",
     "https": "^1.0.0",
+    "method-override": "^3.0.0",
     "mongoose": "^5.13.7",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "slugify": "^1.6.2"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "nodemon server.js -e js,ejs"
   },
   "name": "old-twitter-clone",
   "description": "Clone of the old Twitter, 2007-2008. Reference is images on the internet.",
   "version": "1.0.0",
   "main": "server.js",
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Coskntkk/old-twitter-clone.git"

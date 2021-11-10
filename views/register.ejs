@@ -6,15 +6,15 @@
   </div>
 
   <div class="r-register-form">
-    <form class="" action="/register" method="post">
+    <form class="" action="/users/register" method="post">
       <div class="mb-3 row r-row">
         <label for="signupUserName" class="col-sm-3 col-form-label">Username:</label>
         <div class="col-sm-9 row r-row">
           <div class="col-sm-6">
-            <input type="text" class="form-control r-formcontrol" id="signupUserName" name="userName" autocomplete="off">
+            <input type="text" class="form-control r-formcontrol" id="signupUserName" name="user" autocomplete="off">
           </div>
           <div class="col-sm-6">
-            <p>Your URL: http://twitter.com/<span id="yourUrl"></span></p>
+            <p>Your URL: http://twitter.com/users/<span id="yourUrl"></span></p>
           </div>
         </div>
       </div>
@@ -23,7 +23,7 @@
         <label for="signupPassword" class="col-sm-3 col-form-label">Password: </label>
         <div class="col-sm-9 row r-row">
           <div class="col-sm-6">
-            <input type="password" class="form-control r-formcontrol" id="signupPassword" name="userPassword">
+            <input type="password" class="form-control r-formcontrol" id="signupPassword" name="password">
           </div>
           <div class="col-sm-6">
             <p>6 characters or more (be tricky!)</p>
@@ -35,7 +35,7 @@
         <label for="signupEmail" class="col-sm-3 col-form-label">Email Address: </label>
         <div class="col-sm-9 row r-row">
           <div class="col-sm-6">
-            <input type="email" class="form-control r-formcontrol" id="signupEmail" name="userEmail">
+            <input type="email" class="form-control r-formcontrol" id="signupEmail" name="email">
           </div>
           <div class="col-sm-6">
             <p>In case you forgot something</p>
@@ -46,7 +46,7 @@
       <div class="mb-3 row r-row">
         <label for="humanness" class="col-sm-3 col-form-label">Humanness: </label>
         <div class="col-sm-9">
-          <img src="images\capcha.png" class="img-fluid capcha" alt="capcha">
+          <img src="\images\capcha.png" class="img-fluid capcha" alt="capcha">
         </div>
       </div>
 

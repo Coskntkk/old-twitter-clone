@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-md navbar">
+    <div class="container-fluid nav2">
+        <img class="banner" src="/images/twitter.png" alt="twitter_logo">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light nav-right">
+            <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+
+                <form class="d-flex" action="/search" method="post">
+                    <input class="form-control me-2 search" name="term" type="search" placeholder="Name or word" aria-label="Search">
+                    <button class="btn search-button" type="submit">search</button>
+                </form>
+
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <!---->
+                
+                    <li class="nav-item">
+                        <a class="nav-link" href="/feed">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Find & Follow</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/profile">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <form class="sidebar-links" action="/users/logout" method="get">
+                        <button class="hidden-button" type="submit" name="button"><a class="nav-link disabled" href="#">Sign out</a></button>
+                        </form>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><b>or</b> Login/Join Twitter!</a>
+                    </li>
+
+                </ul>
+
+            </div>
+            </div>
+        </nav>
+    </div>
+</nav>
