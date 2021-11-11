@@ -33,6 +33,8 @@ router.route("/register")
                     }
                 });
             }),
+            // Validate the password field
+            body("password").isLength({ min: 6 }).withMessage(" Password must be at least 6 characters long")
         ],
         authController.createUser
     );

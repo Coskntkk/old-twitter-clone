@@ -65,9 +65,6 @@ Start the server
 - MVC Structure
 - Middlewares for authentication and redirect
 - Register validation for username, email and password
-
-## Roadmap
-
 - Layout improvements
 
 
