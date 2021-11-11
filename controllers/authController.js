@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const Tweet = require("../models/Tweet");
 const bcrypt = require("bcrypt");
+const { body, validationResult } = require('express-validator');
 
 // Create a new user
 exports.createUser = async (req, res) => {
@@ -21,9 +22,11 @@ exports.createUser = async (req, res) => {
 
   } catch (err) {
     // Go back if error occurs
-    req.flash("error", "Account creation failed");
+    const errors = validationResult(req);
+    for (let i=0; i<errors.array().length; i++) {
+      req.flash("error", errors.array()[i].msg);
+    }
     res.status(400).redirect("back");
-
   }
 };
 

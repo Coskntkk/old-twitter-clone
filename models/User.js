@@ -1,8 +1,10 @@
+// Import modules
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require("bcrypt");
 const slugify = require('slugify');
 
+// Create a schema
 const userSchema = new Schema({
     user: {
         type: String,
@@ -52,14 +54,21 @@ const userSchema = new Schema({
     followingImages: [String], // List of following accounts profile images
 });
 
-userSchema.pre("save", function(next){
-    const user = this;
-    bcrypt.hash(user.password, 10, (err, hash) => {
-      user.password = hash;
-      next();
-    });
+// Hash password before saving
+userSchema.pre("save", function(next) {
+  const user = this;
+  if (!user.isModified("password")) return next();
+  bcrypt.genSalt(10, function(err, salt) {
+      if (err) return next(err);
+      bcrypt.hash(user.password, salt, function(err, hash) {
+          if (err) return next(err);
+          user.password = hash;
+          next();
+      });
+  });
 });
 
+// Create username from name
 userSchema.pre("validate", function(next){
     this.user = slugify(this.user, {
       lower: true,
@@ -68,4 +77,5 @@ userSchema.pre("validate", function(next){
     next();
 });
 
+// Export the model
 module.exports = mongoose.model('User', userSchema);

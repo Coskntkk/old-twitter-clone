@@ -64,11 +64,10 @@ Start the server
 - Flash messages
 - MVC Structure
 - Middlewares for authentication and redirect
-
+- Register validation for username, email and password
 
 ## Roadmap
 
-- Register validation for username, email and password
 - Layout improvements
 
 

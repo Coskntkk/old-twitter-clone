@@ -1,7 +1,8 @@
+// Import modules
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const bcrypt = require("bcrypt");
 
+// Create a schema
 const tweetSchema = {
     tweeter: String, // Display name of author
     author: {
@@ -26,4 +27,5 @@ const tweetSchema = {
     }   // parent tweet if it is a reply
 }
 
+// Export the model
 module.exports = mongoose.model('Tweet', tweetSchema);
