@@ -13,7 +13,7 @@
     "slugify": "^1.6.2"
   },
   "scripts": {
-    "start": "nodemon server.js -e js,ejs"
+    "start": "node server.js"
   },
   "name": "old-twitter-clone",
   "description": "Clone of the old Twitter, 2007-2008. Reference is images on the internet.",
