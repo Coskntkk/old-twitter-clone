@@ -51,7 +51,7 @@ const userSchema = new Schema({
         },
       ],  // List of liked tweets's ids
     lastTweet: String, // Text of last update
-    followingImages: [String], // List of following accounts profile images
+    followingImages: [String],
 });
 
 // Hash password before saving
@@ -70,11 +70,8 @@ userSchema.pre("save", function(next) {
 
 // Create username from name
 userSchema.pre("validate", function(next){
-    this.user = slugify(this.user, {
-      lower: true,
-      strict: true,
-    });
-    next();
+  this.user = (!this.user) ? slugify(this.user, {lower: true,strict: true}) : this.user;
+  next();
 });
 
 // Export the model

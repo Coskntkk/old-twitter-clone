@@ -24,7 +24,7 @@ const tweetSchema = {
     parent: {
         type: Schema.Types.ObjectId,
         ref: "Tweet",
-    }   // parent tweet if it is a reply
+    },   // parent tweet if it is a reply
 }
 
 // Export the model

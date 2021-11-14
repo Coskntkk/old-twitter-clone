@@ -8,10 +8,8 @@
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "express-validator": "^6.13.0",
-    "https": "^1.0.0",
     "method-override": "^3.0.0",
     "mongoose": "^5.13.7",
-    "request": "^2.88.2",
     "slugify": "^1.6.2"
   },
   "scripts": {
@@ -30,5 +28,9 @@
   "bugs": {
     "url": "https://github.com/Coskntkk/old-twitter-clone/issues"
   },
-  "homepage": "https://github.com/Coskntkk/old-twitter-clone#readme"
+  "homepage": "https://github.com/Coskntkk/old-twitter-clone#readme",
+  "devDependencies": {
+    "https": "^1.0.0",
+    "request": "^2.88.2"
+  }
 }

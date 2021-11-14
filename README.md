@@ -66,7 +66,7 @@ Start the server
 - Middlewares for authentication and redirect
 - Register validation for username, email and password
 - Layout improvements
-
+- Fake acounts and posts for population
 
 ## Lessons Learned
 

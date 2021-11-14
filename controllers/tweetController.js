@@ -63,7 +63,7 @@ exports.favTweet = async (req, res) => {
     user.favorites.push(tweet._id);
     await user.save();
     // Redirects to the same page.
-    res.redirect("back");
+    res.redirect("/tweets/"+ req.params.id);
 
   } catch (err) {
     // Go back if error occurs
@@ -85,7 +85,7 @@ exports.unfavTweet = async (req, res) => {
     user.favorites.pull(tweet._id);
     await user.save();
     // Redirects to the same page
-    res.redirect("back");
+    res.redirect("/tweets/"+ req.params.id);
   } catch (err) {
     // Go back if error occurs
     req.flash("error", err.message);
