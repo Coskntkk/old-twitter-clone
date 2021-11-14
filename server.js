@@ -4,10 +4,10 @@ const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo");
 const methodOverride = require("method-override");
 const flash = require('connect-flash');
-
+const config = require("./config");
 
 // Mongoose Configuration
-const dbURL = 'mongodb://localhost:27017/oldTwitterDB';
+const dbURL = config.dbUrl;
 mongoose.connect(dbURL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
