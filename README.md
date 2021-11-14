@@ -1,42 +1,15 @@
 
 # Old Twitter Clone
 
-Clone of Twitter from 2007-2008.
+Clone of Twitter from 2007-2008. 
+Deployment: [ Old Twitter ]( https://old-twitter.herokuapp.com/ )
 
 
 ## Tech
 
 **Client:** HTML, CSS, Javascript, EJS, Bootstrap, jQuery
 
-**Server:** Node, Express, Mongoose, Bodyparser
-
-
-## Run Locally
-
-Clone the project
-
-```bash
-  git clone https://github.com/Coskntkk/old-twitter-clone.git
-```
-
-Go to the project directory
-
-```bash
-  cd old-twitter-clone
-```
-
-Install dependencies
-
-```bash
-  npm install
-```
-
-Start the server
-
-```bash
-  node server.js
-```
-
+**Server:** Node, Express, Mongoose
 
 ## Features
 
