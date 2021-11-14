@@ -4,11 +4,10 @@ const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo");
 const methodOverride = require("method-override");
 const flash = require('connect-flash');
-const config = require("./config");
+const dbUrl = require("./dbUrl");
 
 // Mongoose Configuration
-const dbURL = config.dbUrl;
-mongoose.connect(dbURL, {
+mongoose.connect(dbUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
@@ -36,7 +35,7 @@ app.use(session({
   secret: "old twitter",
   resave: false,
   saveUninitialized: true,
-  store: MongoStore.create({ mongoUrl: dbURL }),
+  store: MongoStore.create({ mongoUrl: dbUrl }),
 }));
 app.use(methodOverride("_method", {methods: ["POST", "GET"]}));
 app.use(flash());
