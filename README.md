@@ -41,6 +41,12 @@ Deployment: [ Old Twitter ]( https://old-twitter.herokuapp.com/ )
 - Layout improvements
 - Fake acounts and posts for population
 
+
+## Fixes Log
+
+- Home page link added to twitter logo
+- Delete tweet error fixed
+
 ## Lessons Learned
 
 While building this project, I learned how important it is for the pages to be responsive.

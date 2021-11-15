@@ -58,5 +58,5 @@ app.use("/tweets", tweetRoute)
 // Server Configuration
 const port = process.env.PORT || 3000;
 app.listen(port, function() {
-  console.log("Old Twitter Server is on at Port: 3000");
+  console.log(`Old Twitter Server is on at Port: ${port}`);
 });

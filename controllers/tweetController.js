@@ -131,7 +131,7 @@ exports.deleteTweet = async (req, res) => {
     await user.updates.pull(tweet._id);
     await user.save();
     // Remove tweet from users' favorites
-    await User.updateMany({favorites: {$in: [tweet._id]}}, {$pull: {favorites: {$eq: tweet._id}}});
+    await User.updateMany({favorites: {$in: [tweet._id]}}, {$pull: {favorites: {$in: [tweet._id]}}});
     // Delete tweet
     await Tweet.findByIdAndDelete(req.params.id);
     // Redirect to the same page
@@ -140,7 +140,7 @@ exports.deleteTweet = async (req, res) => {
 
   } catch (err) {
     // Go back if error occurs
-    req.flash("error", err);
+    req.flash("error", err.message);
     res.status(400).redirect("back");
   }
 };

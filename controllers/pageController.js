@@ -20,7 +20,7 @@ exports.getRegisterPage = (req, res) => {
 exports.getFeedPage = async (req, res) => {
   try {
     // Get the user
-    const user = await User.findById(req.session.userId).populate("following");; 
+    const user = await User.findById(req.session.userId);; 
     // Gets a list of user and his followings
     let allTweetsFrom = [...user.following];
     allTweetsFrom.push(user._id);
