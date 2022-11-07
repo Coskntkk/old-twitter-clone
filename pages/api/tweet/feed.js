@@ -1,9 +1,7 @@
-import connectMongo from '../../../utils/connectMongo';
-import User from '../../../models/user';
 import Tweet from '../../../models/tweet';
 import Follow from '../../../models/follow';
-import { getUserFromToken } from '../../../utils/functions';
 import Favorite from '../../../models/favorite';
+import { getUserFromToken } from '../../../utils/functions';
 
 export default async function Feed(req, res) {
     try {

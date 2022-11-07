@@ -1,5 +1,4 @@
-import User from '../../../../models/User';
-import Favorite from '../../../../models/favorite';
+import User from '../../../../models/user';
 import Follow from '../../../../models/follow';
 import { getUserFromToken } from '../../../../utils/functions';
 

@@ -1,4 +1,3 @@
-import connectMongo from '../../../utils/connectMongo';
 import Tweet from '../../../models/tweet';
 import { getUserFromToken } from '../../../utils/functions';
 

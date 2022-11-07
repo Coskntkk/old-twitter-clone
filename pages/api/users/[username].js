@@ -1,4 +1,4 @@
-import User from '../../../models/User';
+import User from '../../../models/user';
 import Follow from '../../../models/follow';
 import Tweet from '../../../models/tweet';
 import Favorite from '../../../models/favorite';
