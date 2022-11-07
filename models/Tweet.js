@@ -1,31 +1,26 @@
 // Import modules
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+import { Schema, model, models } from 'mongoose';
 
 // Create a schema
-const tweetSchema = {
-    tweeter: String, // Display name of author
+const tweetSchema = new Schema({
     author: {
         type: Schema.Types.ObjectId,
         ref: "User",
-      }, // ID of author
-    tweet: String, // Content of tweet
-    likes: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: "User",
-        },
-    ],  // liked accounts
+    },
+    tweet: {
+        type: String,
+        allowNull: false
+    },
     date: {
         type: Date,
         default: Date.now,
-    }, // Date
-    img: String, // Profile image of author
+    },
     parent: {
         type: Schema.Types.ObjectId,
         ref: "Tweet",
-    },   // parent tweet if it is a reply
-}
+    },
+});
 
-// Export the model
-module.exports = mongoose.model('Tweet', tweetSchema);
+const Tweet = models.Tweet || model('Tweet', tweetSchema);
+
+export default Tweet;

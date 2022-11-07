@@ -1,0 +1,71 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 1rem;
+    height: 100%;
+}
+
+.menu {
+    display: flex;
+    width: 80%;
+    height: 100%;
+}
+
+.menuList {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    float: left;
+    width: 100%;
+    height: 100%;
+}
+
+
+.menuPublic, .menuPrivate {
+    background-color: white;
+}
+
+.menuPublic {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 1rem;
+    justify-content: space-around;
+}
+.menuPublic a, .menuPrivate a {
+    text-decoration: none;
+    color: gray;
+}
+.menuPublic a:hover {
+    color: black;
+}
+
+.menuPrivate {
+    width: 75%;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 1rem;
+    justify-content: space-around;
+}
+
+.switch {
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        justify-content: center;
+    }
+    .banner {
+        height: 50%;
+        margin-bottom: 1rem;
+    }
+    .menu, .menuList, .menuPublic, .menuPrivate {
+        width: 100%;
+    }
+}

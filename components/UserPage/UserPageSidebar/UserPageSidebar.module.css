@@ -1,0 +1,22 @@
+.container {
+    height: 100%;
+    padding: 0 0 0 2%;
+}
+
+.main {
+    height: 100%;
+    background-color: #e0ff92;
+    border: 1px solid #87bc44;
+    padding: 4%;
+    text-align: left;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        margin-top: 1rem;
+        padding: 0;
+    }
+}

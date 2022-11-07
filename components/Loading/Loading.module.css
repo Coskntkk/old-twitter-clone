@@ -1,0 +1,39 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.white, .green {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 50px;
+}
+
+.white {
+    width: 67%;
+    background-color: white;
+    color: rgb(175, 239, 241);
+}
+
+.green {
+    width: 33%;
+    background-color: #e0ff92;
+    border: 1px solid #87bc44;
+    margin-left: 1rem;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+    }
+    .white, .green {
+        width: 100%;
+        margin: 0;
+    }
+}

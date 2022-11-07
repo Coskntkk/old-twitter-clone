@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.profile {
+    background-color: white;
+    width: 67%;
+    padding: 0 1rem;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        padding: 0;
+    }
+    .profile {
+        width: 100%;
+        margin: 0;
+    }
+}

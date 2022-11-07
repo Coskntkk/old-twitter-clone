@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: fit-content;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    width: 66%;
+    padding: 0 1rem;
+    background-color: white;
+}
+
+@media (max-width: 768px) {
+    .container, .main {
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+    }
+}

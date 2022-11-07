@@ -1,38 +1,26 @@
 {
-  "dependencies": {
-    "bcrypt": "^5.0.1",
-    "body-parser": "^1.19.0",
-    "connect-flash": "^0.1.1",
-    "connect-mongo": "^4.6.0",
-    "dotenv": "^10.0.0",
-    "ejs": "^3.1.6",
-    "express": "^4.17.1",
-    "express-session": "^1.17.2",
-    "express-validator": "^6.13.0",
-    "method-override": "^3.0.0",
-    "mongodb": "^4.1.4",
-    "mongoose": "^5.13.7",
-    "slugify": "^1.6.2"
-  },
+  "name": "oldtwitter",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "start": "node server.js"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
-  "name": "old-twitter-clone",
-  "description": "Clone of the old Twitter, 2007-2008. Reference is images on the internet.",
-  "version": "1.0.0",
-  "main": "server.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Coskntkk/old-twitter-clone.git"
+  "dependencies": {
+    "axios": "^0.27.2",
+    "bcrypt": "^5.0.1",
+    "bootstrap": "^5.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.5.3",
+    "next": "12.2.5",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "universal-cookie": "^4.0.4"
   },
-  "author": "Coşkun Atak",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Coskntkk/old-twitter-clone/issues"
-  },
-  "homepage": "https://github.com/Coskntkk/old-twitter-clone#readme",
   "devDependencies": {
-    "https": "^1.0.0",
-    "request": "^2.88.2"
+    "eslint": "8.23.0",
+    "eslint-config-next": "12.2.5"
   }
 }

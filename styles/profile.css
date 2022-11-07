@@ -1,0 +1,33 @@
+.p-p {
+  margin: 0;
+  padding: 0;
+}
+
+
+.p-last-tweet-box{
+  text-align: left;
+  margin: 5px 0 0 0;
+  padding: 0;
+}
+
+.p-last-tweet-author {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 50% 3%;
+  text-decoration: none;
+  color: black;
+}
+
+.p-last-tweet-text {
+  font-size: 2rem;
+  margin-top: 3%;
+}
+
+.p-tweet-text {
+  font-size: 1.2rem;
+}
+
+.p-tweet-date {
+  font-size: 0.8rem;
+  color: darkgray;
+}

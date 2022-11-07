@@ -1,0 +1,23 @@
+.footer {
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2rem 0;
+    padding: 1rem;
+}
+
+.footerLink {
+    margin: 0 3px;
+}
+
+@media screen and (max-width: 768px) {
+    .footer {
+        flex-direction: column;
+        padding: 0.5rem;
+        margin: 1rem 0;
+        font-size: 0.8rem;
+        line-height: 1.5rem;
+        text-align: center;
+    }
+}

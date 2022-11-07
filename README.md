@@ -3,14 +3,14 @@
 
 Clone of Twitter from 2007-2008. 
 
-Deployment: [ Old Twitter ]( https://old-twitter.herokuapp.com/ )
-
+Deployment: [ Old Twitter (Old Heroku Url) ]( https://old-twitter.herokuapp.com/ )
+Deployment: [ Old Twitter (New Vercel Deployment) ]( ** ** )
 
 ## Tech
 
-**Client:** HTML, CSS, Javascript, EJS, Bootstrap, jQuery
+**Client:** HTML, CSS, Javascript, Bootstrap, React, Next.js
 
-**Server:** Node, Express, Mongoose
+**Server:** Next.js API Routes, MongoDB, Mongoose
 
 ## Features
 
@@ -41,12 +41,6 @@ Deployment: [ Old Twitter ]( https://old-twitter.herokuapp.com/ )
 - Register validation for username, email and password
 - Layout improvements
 - Fake acounts and posts for population
-
-
-## Fixes Log
-
-- Home page link added to twitter logo
-- Delete tweet error fixed
 
 ## Lessons Learned
 
