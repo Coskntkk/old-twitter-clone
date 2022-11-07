@@ -4,7 +4,7 @@
 Clone of Twitter from 2007-2008. 
 
 Deployment: [ Old Twitter (Old Heroku Url) ]( https://old-twitter.herokuapp.com/ )
-Deployment: [ Old Twitter (New Vercel Deployment) ]( ** ** )
+Deployment: [ Old Twitter (New Vercel Deployment) ]( https://old-twitter.vercel.app/ )
 
 ## Tech
 
