@@ -133,8 +133,8 @@ const UserPage = ({ username }) => {
             <div className="p-last-tweet-top">
               <img className="f-tweet-pp" src={`/images/${user.image}`} alt="" />
               <span href="" className="p-last-tweet-author disabled">  {user.username}  </span>
-                {user.role === 2 && <span style={{ color: "purple" }}>{" "}(👑)</span>}
-                {user.role === 1 && <i style={{ color: "rgb(154, 228, 232)" }} className="fa-solid fa-circle-check"></i>}
+              {user.role === 2 && <span style={{ color: "purple" }}>{" "}(👑)</span>}
+              {user.role === 1 && <i style={{ color: "rgb(154, 228, 232)" }} className="fa-solid fa-circle-check"></i>}
             </div>
             {isAuthenticated &&
               user.isFollowing ?
@@ -158,9 +158,9 @@ const UserPage = ({ username }) => {
                     <i className="far fa-star f-unfaved"></i>
                   </button>
                 }
+                {lastTweet.likesCount > 0 && <span> {lastTweet.likesCount} </span>}
               </>
             }
-            {lastTweet.likesCount > 0 && <span> {lastTweet.likesCount} </span>}
           </div>
           <hr className="f-tweet-hr" />
 

@@ -68,22 +68,24 @@ const UserProfile = () => {
             <div className="p-last-tweet-top">
               <img className="f-tweet-pp" src={`/images/${user.image}`} alt="" />
               <span href="" className="p-last-tweet-author disabled">  {user.username}  </span>
-                {user.role === 2 && <span style={{ color: "purple" }}>{" "}(👑)</span>}
-                {user.role === 1 && <i style={{ color: "rgb(154, 228, 232)" }} className="fa-solid fa-circle-check"></i>}
+              {user.role === 2 && <span style={{ color: "purple" }}>{" "}(👑)</span>}
+              {user.role === 1 && <i style={{ color: "rgb(154, 228, 232)" }} className="fa-solid fa-circle-check"></i>}
             </div>
-            {/* <!-- LAST TWEET --> */} 
+            {/* <!-- LAST TWEET --> */}
             {lastTweet &&
               <>
-                <p className="p-last-tweet-text p-p" style={{ wordBreak: 'break-word'}}>{lastTweet.tweet || "Not updated yed."}</p>
+                <p className="p-last-tweet-text p-p" style={{ wordBreak: 'break-word' }}>{lastTweet.tweet || "Not updated yed."}</p>
                 <p className="p-last-tweet-date p-p" style={{ display: "inline-block", color: "darkgray" }}>{lastTweet.date.split("T")[0] + " " + lastTweet.date.split("T")[1].split(":")[0] + ":" + lastTweet.date.split("T")[1].split(":")[1]}{" "}</p>
                 <Link href={`/tweets/${lastTweet._id}`}><i className="fas fa-reply f-reply"></i></Link>
+                {" "}
                 <button type="submit" name="button" className="hidden-button" onClick={() => deleteTweet(lastTweet._id)}>
                   <i className="far fa-trash-alt f-del"></i>
                 </button>
+                {" "}
+                {lastTweet.likesCount > 0 && <span><i className="fas fa-star f-faved"></i>{lastTweet.likesCount}</span>}
               </>
             }
           </div>
-          {lastTweet.likesCount > 0 && <span> {lastTweet.likesCount} </span>}
           <hr className="f-tweet-hr" />
 
           {tweets.length > 0 &&
